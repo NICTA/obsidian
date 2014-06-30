@@ -1,0 +1,212 @@
+//!
+//! \file serial/serialtypes.proto
+//! \author Lachlan McCalman
+//! \date 2014
+//! \license Affero General Public License version 3 or later
+//! \copyright (c) 2014, NICTA
+//!
+
+// These definitions correspond to the datatypes.hpp objects defining
+// the communications interface between different components of GDF.
+// Protobuf is really just used as a tool to serialise the datatypes
+// to strings as an intermediate step for communication
+
+// GravityInitialParams protobuf object for serialisation
+
+message BoundarySpecProtobuf
+{
+  required uint64 resX = 1;
+  required uint64 resY = 2;
+  required uint64 boundaryClass = 3;
+  required bytes offset = 4;
+  required uint64 offsetRows=5;
+}
+
+message WorldSpecProtobuf
+{
+  required double xMin = 1;
+  required double yMin = 2;
+  required double zMin = 3;
+  required double xMax = 4;
+  required double yMax = 5;
+  required double zMax = 6;
+  repeated BoundarySpecProtobuf boundaries = 7;
+  required bool boundariesAreTimes = 8;
+}
+
+message VoxelisationProtobuf
+{
+  required uint64 xResolution = 1;
+  required uint64 yResolution = 2;
+  required uint64 zResolution = 3;
+  required uint64 supersample = 4;
+}
+
+message NoiseSpecProtobuf
+{
+  required double inverseGammaAlpha = 1;
+  required double inverseGammaBeta = 2;
+}
+
+message GravSpecProtobuf
+{
+  required uint64 numLocations = 1;
+  required bytes locations = 2;
+  required VoxelisationProtobuf voxelisation = 3;
+  required NoiseSpecProtobuf noise = 4;
+}
+
+// MagInitialParams protobuf object for serialisation
+message MagSpecProtobuf
+{
+  required uint64 numLocations = 1;
+  required bytes locations = 2;
+  required VoxelisationProtobuf voxelisation = 3;
+  required NoiseSpecProtobuf noise = 4;
+  required bytes backgroundField = 5;
+}
+
+message MtAnisoSpecProtobuf
+{
+  required uint64 numLocations = 1;
+  required bytes locations = 2;
+  repeated uint64 numFreqs = 3;
+  repeated bytes freqs = 4;
+//  required uint32 likelihoodType = 5;
+  required NoiseSpecProtobuf noise = 5;
+  required bool ignoreAniso = 6;
+}
+
+message ThermalSpecProtobuf
+{
+  required uint64 numLocations = 1;
+  required bytes locations = 2;
+  required double surfaceTemperature = 3;
+  required double lowerBoundary = 4;
+  required bool lowerBoundaryIsHeatFlow = 5;
+  required VoxelisationProtobuf voxelisation = 6;
+  required NoiseSpecProtobuf noise = 7;
+}
+
+message WorldParamsProtobuf
+{
+  repeated bytes rockProperties = 1;
+  repeated bytes controlPoints = 2;
+  repeated uint64 controlPointRows=3[packed=true];
+}
+
+// GravityParams protobuf object for serialisation
+message GravParamsProtobuf
+{
+  required bool returnSensorData = 1;
+}
+
+// MagParams protobuf object for serialisation
+message MagParamsProtobuf
+{
+  required bool returnSensorData = 1;
+}
+
+message MtAnisoParamsProtobuf
+{
+  required bool returnSensorData = 1;
+}
+
+message ThermalParamsProtobuf
+{
+  required bool returnSensorData = 1;
+}
+
+// GravityResults protobuf object for serialisation
+message GravResultsProtobuf
+{
+  required double likelihood = 1;
+  optional uint64 numReadings = 2;
+  optional bytes readings = 3;
+}
+
+// MagResults protobuf object for serialisation
+message MagResultsProtobuf
+{
+  required double likelihood = 1;
+  optional uint64 numReadings = 2;
+  optional bytes readings = 3;
+}
+
+message MtAnisoResultsProtobuf
+{
+  required double likelihood = 1;
+  repeated uint64 numFreqs = 2;
+  repeated bytes readings = 3;
+  repeated bytes phaseTensor = 4;
+  repeated bytes alpha = 5;
+  repeated bytes beta = 6;
+}
+
+message ThermalResultsProtobuf
+{
+  required double likelihood = 1;
+  optional uint64 numReadings = 2;
+  optional bytes readings = 3;
+}
+
+// Seismic protobuf serialisation objects
+
+message Seismic1dSpecProtobuf
+{
+  required uint64 numLocations = 1;
+  required bytes locations = 2;
+  repeated uint64 numInterfaces = 3;
+  repeated bytes interfaces = 4;
+  required NoiseSpecProtobuf noise = 5;
+}
+
+message Seismic1dParamsProtobuf
+{
+  required bool returnSensorData = 1;
+}
+
+message Seismic1dResultsProtobuf
+{
+  required double likelihood = 1;
+  repeated uint64 numReadings = 2;
+  repeated bytes readings = 3;
+}
+
+// contactpoint protobuf serialisation objects
+
+message ContactPointSpecProtobuf
+{
+  required uint64 numLocations = 1;
+  required bytes locations = 2;
+  repeated uint64 numInterfaces = 3;
+  repeated bytes interfaces = 4;
+  required NoiseSpecProtobuf noise = 5;
+}
+
+message ContactPointParamsProtobuf
+{
+  required bool returnSensorData = 1;
+}
+
+message ContactPointResultsProtobuf
+{
+  required double likelihood = 1;
+  repeated uint64 numReadings = 2;
+  repeated bytes readings = 3;
+}
+
+// Eigen Matrix protobuf object for serialisation
+message EigenMatrixProtobuf
+{
+  required uint64 rows = 1;
+  required uint64 cols = 2;
+  required bytes contents = 3;
+}
+
+// Eigen Vector protobuf object for serialisation
+message EigenVectorProtobuf
+{
+  required uint64 size = 1;
+  required bytes contents = 2;
+}
