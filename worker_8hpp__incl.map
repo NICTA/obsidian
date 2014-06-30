@@ -1,0 +1,8 @@
+<map id="/home/lb/code/GDF/src/comms/worker.hpp" name="/home/lb/code/GDF/src/comms/worker.hpp">
+<area shape="rect" id="node5" href="$comms_2settings_8hpp.html" title="Settings constructs for program configuration. " alt="" coords="43,320,183,347"/>
+<area shape="rect" id="node7" href="$messages_8hpp.html" title="Contains the functions to seralise and unserialise GDF datatypes. " alt="" coords="309,320,463,347"/>
+<area shape="rect" id="node10" href="$comms_2datatypes_8hpp.html" title="datatypes.hpp" alt="" coords="604,403,708,429"/>
+<area shape="rect" id="node13" href="$transport_8hpp.html" title="Contains the functions to communicate GDF datatypes across zmq in accordance with the GDFP&#45;SW (GDF Se..." alt="" coords="202,245,347,272"/>
+<area shape="rect" id="node14" href="$router_8hpp.html" title="A router that implements polling on multiple zeromq sockets, and a signal&#45;based callback system depen..." alt="" coords="445,171,571,197"/>
+<area shape="rect" id="node19" href="$clientheartbeat_8hpp.html" title="Heartbeat routers that deal with client heartbeating sending and receiving. " alt="" coords="155,96,333,123"/>
+</map>

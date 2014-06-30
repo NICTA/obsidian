@@ -1,0 +1,11 @@
+<map id="obsidian::GlobalSpec" name="obsidian::GlobalSpec">
+<area shape="rect" id="node2" href="$classobsidian_1_1_world_spec.html" title="obsidian::WorldSpec" alt="" coords="293,40,435,67"/>
+<area shape="rect" id="node3" href="$structobsidian_1_1_mag_spec.html" title="obsidian::MagSpec" alt="" coords="297,151,431,177"/>
+<area shape="rect" id="node4" href="$structobsidian_1_1_voxel_spec.html" title="obsidian::VoxelSpec" alt="" coords="7,36,148,63"/>
+<area shape="rect" id="node7" href="$structobsidian_1_1_thermal_spec.html" title="obsidian::ThermalSpec" alt="" coords="287,91,441,117"/>
+<area shape="rect" id="node8" href="$structobsidian_1_1_grav_spec.html" title="obsidian::GravSpec" alt="" coords="296,201,432,228"/>
+<area shape="rect" id="node5" href="$structobsidian_1_1_noise_spec.html" title="obsidian::NoiseSpec" alt="" coords="6,240,149,267"/>
+<area shape="rect" id="node6" href="$structobsidian_1_1_seismic1d_spec.html" title="obsidian::Seismic1dSpec" alt="" coords="279,353,449,380"/>
+<area shape="rect" id="node9" href="$structobsidian_1_1_mt_aniso_spec.html" title="obsidian::MtAnisoSpec" alt="" coords="286,252,442,279"/>
+<area shape="rect" id="node10" href="$structobsidian_1_1_contact_point_spec.html" title="obsidian::ContactPointSpec" alt="" coords="272,303,456,329"/>
+</map>

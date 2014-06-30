@@ -1,0 +1,8 @@
+<map id="/home/lb/code/GDF/src/io/npy.hpp" name="/home/lb/code/GDF/src/io/npy.hpp">
+<area shape="rect" id="node2" href="$common_8hpp.html" title="Common header files included by all the input implementations. Contains helper functions. " alt="" coords="203,97,361,138"/>
+<area shape="rect" id="node5" href="$input_8cpp.html" title="Input implementations. " alt="" coords="370,187,528,229"/>
+<area shape="rect" id="node6" href="$npy_8cpp.html" title="/home/lb/code/GDF/src\l/io/npy.cpp" alt="" coords="470,97,628,138"/>
+<area shape="rect" id="node7" href="$dumpnpz_8hpp.html" title="Shared methods for writing to npz. " alt="" coords="653,97,811,138"/>
+<area shape="rect" id="node3" href="$magnetism_8cpp.html" title="Input implementations related to magnetics forward model. " alt="" coords="5,187,163,229"/>
+<area shape="rect" id="node4" href="$global_8cpp.html" title="Input implementations related to global objects. " alt="" coords="187,187,345,229"/>
+</map>

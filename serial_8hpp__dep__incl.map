@@ -1,0 +1,12 @@
+<map id="/home/lb/code/GDF/src/serial/serial.hpp" name="/home/lb/code/GDF/src/serial/serial.hpp">
+<area shape="rect" id="node2" href="$asyncdelegator_8cpp.html" title="Async policy for job multiplexing on server side. " alt="" coords="5,97,168,138"/>
+<area shape="rect" id="node3" href="$asyncworker_8hpp.html" title="Async policy for job multiplexing on worker side. " alt="" coords="193,97,351,138"/>
+<area shape="rect" id="node4" href="$minion_8cpp.html" title="/home/lb/code/GDF/src\l/comms/minion.cpp" alt="" coords="375,97,533,138"/>
+<area shape="rect" id="node5" href="$delegator_8cpp.html" title="/home/lb/code/GDF/src\l/comms/delegator.cpp" alt="" coords="558,97,716,138"/>
+<area shape="rect" id="node6" href="$requester_8cpp.html" title="/home/lb/code/GDF/src\l/comms/requester.cpp" alt="" coords="741,97,899,138"/>
+<area shape="rect" id="node7" href="$input_8hpp.html" title="Input constructs for problem specification. " alt="" coords="923,97,1081,138"/>
+<area shape="rect" id="node8" href="$common_8hpp.html" title="Common header files included by all the input implementations. Contains helper functions. " alt="" coords="849,187,1007,229"/>
+<area shape="rect" id="node11" href="$input_8cpp.html" title="Input implementations. " alt="" coords="1015,278,1173,319"/>
+<area shape="rect" id="node9" href="$magnetism_8cpp.html" title="Input implementations related to magnetics forward model. " alt="" coords="650,278,808,319"/>
+<area shape="rect" id="node10" href="$global_8cpp.html" title="Input implementations related to global objects. " alt="" coords="833,278,991,319"/>
+</map>

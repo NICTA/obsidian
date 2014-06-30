@@ -1,0 +1,10 @@
+<map id="/home/lb/code/GDF/src/comms/serverheartbeat.hpp" name="/home/lb/code/GDF/src/comms/serverheartbeat.hpp">
+<area shape="rect" id="node2" href="$serverheartbeat_8cpp.html" title="Implementation of heartbeat routers that deal with server heartbeating sending and receiving..." alt="" coords="5,97,192,138"/>
+<area shape="rect" id="node3" href="$delegator_8hpp.html" title="The delegator is the intermediary between requesters and workers. It acts as the server to which work..." alt="" coords="217,97,375,138"/>
+<area shape="rect" id="node4" href="$asyncdelegator_8cpp.html" title="Async policy for job multiplexing on server side. " alt="" coords="214,369,377,410"/>
+<area shape="rect" id="node5" href="$asyncdelegator_8hpp.html" title="Async policy for job multiplexing on server side. " alt="" coords="517,278,680,319"/>
+<area shape="rect" id="node6" href="$asyncworker_8hpp.html" title="Async policy for job multiplexing on worker side. " alt="" coords="99,278,257,319"/>
+<area shape="rect" id="node7" href="$delegator_8cpp.html" title="/home/lb/code/GDF/src\l/comms/delegator.cpp" alt="" coords="399,187,557,229"/>
+<area shape="rect" id="node8" href="$requester_8hpp.html" title="Object which actually requests work and returns a result. Many of these can live in the same executab..." alt="" coords="217,187,375,229"/>
+<area shape="rect" id="node9" href="$requester_8cpp.html" title="/home/lb/code/GDF/src\l/comms/requester.cpp" alt="" coords="334,278,492,319"/>
+</map>

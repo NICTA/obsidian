@@ -1,0 +1,28 @@
+<map id="/home/lb/code/GDF/src/comms/settings.hpp" name="/home/lb/code/GDF/src/comms/settings.hpp">
+<area shape="rect" id="node2" href="$app_2settings_8hpp.html" title="Settings constructs for program configuration. " alt="" coords="554,97,712,138"/>
+<area shape="rect" id="node13" href="$clientheartbeat_8cpp.html" title="Implementation of heartbeat routers that deal with client heartbeating sending and receiving..." alt="" coords="829,187,1011,229"/>
+<area shape="rect" id="node14" href="$clientheartbeat_8hpp.html" title="Heartbeat routers that deal with client heartbeating sending and receiving. " alt="" coords="958,97,1140,138"/>
+<area shape="rect" id="node15" href="$worker_8hpp.html" title="The worker object connects with a delegator, then forwards job requests to a set of minions that actu..." alt="" coords="1035,187,1193,229"/>
+<area shape="rect" id="node20" href="$delegator_8hpp.html" title="The delegator is the intermediary between requesters and workers. It acts as the server to which work..." alt="" coords="1293,187,1451,229"/>
+<area shape="rect" id="node26" href="$serverheartbeat_8hpp.html" title="Heartbeat routers that deal with server heartbeating sending and receiving. " alt="" coords="1278,97,1465,138"/>
+<area shape="rect" id="node3" href="$settings_8cpp.html" title="/home/lb/code/GDF/src\l/app/settings.cpp" alt="" coords="645,187,803,229"/>
+<area shape="rect" id="node4" href="$db_8hpp.html" title="Contains the interface used for persistent storage of the MCMC data. " alt="" coords="187,187,345,229"/>
+<area shape="rect" id="node8" href="$input_8hpp.html" title="Input constructs for problem specification. " alt="" coords="462,187,620,229"/>
+<area shape="rect" id="node5" href="$db_8cpp.html" title="Contains implementation of the database structure used for persistent storage of the MCMC data..." alt="" coords="5,278,163,319"/>
+<area shape="rect" id="node6" href="$chainarray_8hpp.html" title="Contains the interface for MCMC chains. " alt="" coords="187,278,345,319"/>
+<area shape="rect" id="node7" href="$chainarray_8cpp.html" title="Contains the implementation of MCMC chains. " alt="" coords="95,369,253,410"/>
+<area shape="rect" id="node9" href="$common_8hpp.html" title="Common header files included by all the input implementations. Contains helper functions. " alt="" coords="462,278,620,319"/>
+<area shape="rect" id="node12" href="$input_8cpp.html" title="Input implementations. " alt="" coords="643,369,801,410"/>
+<area shape="rect" id="node10" href="$magnetism_8cpp.html" title="Input implementations related to magnetics forward model. " alt="" coords="278,369,436,410"/>
+<area shape="rect" id="node11" href="$global_8cpp.html" title="Input implementations related to global objects. " alt="" coords="461,369,619,410"/>
+<area shape="rect" id="node16" href="$asyncworker_8hpp.html" title="Async policy for job multiplexing on worker side. " alt="" coords="1149,369,1307,410"/>
+<area shape="rect" id="node17" href="$worker_8cpp.html" title="Contains the implementation of the worker. " alt="" coords="1007,278,1165,319"/>
+<area shape="rect" id="node18" href="$minion_8hpp.html" title="Object which actually performs the work requested then distributed by the worker. There can be many m..." alt="" coords="825,278,983,319"/>
+<area shape="rect" id="node19" href="$minion_8cpp.html" title="/home/lb/code/GDF/src\l/comms/minion.cpp" alt="" coords="826,369,984,410"/>
+<area shape="rect" id="node21" href="$asyncdelegator_8cpp.html" title="Async policy for job multiplexing on server side. " alt="" coords="1590,459,1753,501"/>
+<area shape="rect" id="node22" href="$asyncdelegator_8hpp.html" title="Async policy for job multiplexing on server side. " alt="" coords="1590,369,1753,410"/>
+<area shape="rect" id="node23" href="$delegator_8cpp.html" title="/home/lb/code/GDF/src\l/comms/delegator.cpp" alt="" coords="1293,278,1451,319"/>
+<area shape="rect" id="node24" href="$requester_8hpp.html" title="Object which actually requests work and returns a result. Many of these can live in the same executab..." alt="" coords="1475,278,1633,319"/>
+<area shape="rect" id="node25" href="$requester_8cpp.html" title="/home/lb/code/GDF/src\l/comms/requester.cpp" alt="" coords="1407,369,1565,410"/>
+<area shape="rect" id="node27" href="$serverheartbeat_8cpp.html" title="Implementation of heartbeat routers that deal with server heartbeating sending and receiving..." alt="" coords="1475,187,1663,229"/>
+</map>

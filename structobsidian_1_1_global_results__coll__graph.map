@@ -1,0 +1,8 @@
+<map id="obsidian::GlobalResults" name="obsidian::GlobalResults">
+<area shape="rect" id="node2" href="$structobsidian_1_1_contact_point_results.html" title="obsidian::ContactPointResults" alt="" coords="6,5,205,32"/>
+<area shape="rect" id="node3" href="$structobsidian_1_1_grav_results.html" title="obsidian::GravResults" alt="" coords="30,56,181,83"/>
+<area shape="rect" id="node4" href="$structobsidian_1_1_mt_aniso_results.html" title="obsidian::MtAnisoResults" alt="" coords="20,107,191,133"/>
+<area shape="rect" id="node5" href="$structobsidian_1_1_seismic1d_results.html" title="obsidian::Seismic1dResults" alt="" coords="13,157,197,184"/>
+<area shape="rect" id="node6" href="$structobsidian_1_1_mag_results.html" title="obsidian::MagResults" alt="" coords="31,208,179,235"/>
+<area shape="rect" id="node7" href="$structobsidian_1_1_thermal_results.html" title="obsidian::ThermalResults" alt="" coords="20,259,191,285"/>
+</map>

@@ -1,0 +1,9 @@
+<map id="/home/lb/code/GDF/src/comms/minion.hpp" name="/home/lb/code/GDF/src/comms/minion.hpp">
+<area shape="rect" id="node6" href="$messages_8hpp.html" title="Contains the functions to seralise and unserialise GDF datatypes. " alt="" coords="204,395,357,421"/>
+<area shape="rect" id="node13" href="$transport_8hpp.html" title="Contains the functions to communicate GDF datatypes across zmq in accordance with the GDFP&#45;SW (GDF Se..." alt="" coords="907,320,1052,347"/>
+<area shape="rect" id="node14" href="$worker_8hpp.html" title="The worker object connects with a delegator, then forwards job requests to a set of minions that actu..." alt="" coords="749,96,883,123"/>
+<area shape="rect" id="node9" href="$comms_2datatypes_8hpp.html" title="datatypes.hpp" alt="" coords="599,477,703,504"/>
+<area shape="rect" id="node15" href="$comms_2settings_8hpp.html" title="Settings constructs for program configuration. " alt="" coords="383,395,523,421"/>
+<area shape="rect" id="node16" href="$router_8hpp.html" title="A router that implements polling on multiple zeromq sockets, and a signal&#45;based callback system depen..." alt="" coords="509,245,635,272"/>
+<area shape="rect" id="node21" href="$clientheartbeat_8hpp.html" title="Heartbeat routers that deal with client heartbeating sending and receiving. " alt="" coords="663,171,841,197"/>
+</map>

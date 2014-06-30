@@ -1,0 +1,9 @@
+<map id="/home/lb/code/GDF/src/datatype/sensors.hpp" name="/home/lb/code/GDF/src/datatype/sensors.hpp">
+<area shape="rect" id="node2" href="$asyncdelegator_8cpp.html" title="Async policy for job multiplexing on server side. " alt="" coords="90,97,253,138"/>
+<area shape="rect" id="node3" href="$input_8hpp.html" title="Input constructs for problem specification. " alt="" coords="278,97,436,138"/>
+<area shape="rect" id="node8" href="$dumpnpz_8hpp.html" title="Shared methods for writing to npz. " alt="" coords="461,97,619,138"/>
+<area shape="rect" id="node4" href="$common_8hpp.html" title="Common header files included by all the input implementations. Contains helper functions. " alt="" coords="203,187,361,229"/>
+<area shape="rect" id="node7" href="$input_8cpp.html" title="Input implementations. " alt="" coords="370,278,528,319"/>
+<area shape="rect" id="node5" href="$magnetism_8cpp.html" title="Input implementations related to magnetics forward model. " alt="" coords="5,278,163,319"/>
+<area shape="rect" id="node6" href="$global_8cpp.html" title="Input implementations related to global objects. " alt="" coords="187,278,345,319"/>
+</map>

@@ -1,0 +1,6 @@
+<map id="/home/lb/code/GDF/src/infer/mcmctypes.hpp" name="/home/lb/code/GDF/src/infer/mcmctypes.hpp">
+<area shape="rect" id="node2" href="$chainarray_8hpp.html" title="Contains the interface for MCMC chains. " alt="" coords="5,97,163,138"/>
+<area shape="rect" id="node4" href="$serial_2mcmc_8hpp.html" title="Serialisation of infer/mcmctypes.hpp types. " alt="" coords="187,97,345,138"/>
+<area shape="rect" id="node3" href="$chainarray_8cpp.html" title="Contains the implementation of MCMC chains. " alt="" coords="5,187,163,229"/>
+<area shape="rect" id="node5" href="$serial_2mcmc_8cpp.html" title="/home/lb/code/GDF/src\l/serial/mcmc.cpp" alt="" coords="187,187,345,229"/>
+</map>

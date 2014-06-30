@@ -1,0 +1,9 @@
+<map id="obsidian::GlobalCache" name="obsidian::GlobalCache">
+<area shape="rect" id="node2" href="$structobsidian_1_1_thermal_cache.html" title="obsidian::ThermalCache" alt="" coords="257,5,420,32"/>
+<area shape="rect" id="node3" href="$structobsidian_1_1world_1_1_query.html" title="obsidian::world::Query" alt="" coords="5,132,157,159"/>
+<area shape="rect" id="node4" href="$structobsidian_1_1_seismic1d_cache.html" title="obsidian::Seismic1dCache" alt="" coords="250,56,427,83"/>
+<area shape="rect" id="node5" href="$structobsidian_1_1_grav_cache.html" title="obsidian::GravCache" alt="" coords="267,107,411,133"/>
+<area shape="rect" id="node6" href="$structobsidian_1_1_mt_aniso_cache.html" title="obsidian::MtAnisoCache" alt="" coords="257,157,421,184"/>
+<area shape="rect" id="node7" href="$structobsidian_1_1_contact_point_cache.html" title="obsidian::ContactPointCache" alt="" coords="243,208,435,235"/>
+<area shape="rect" id="node8" href="$structobsidian_1_1_mag_cache.html" title="obsidian::MagCache" alt="" coords="268,259,409,285"/>
+</map>

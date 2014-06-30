@@ -1,0 +1,23 @@
+<map id="/home/lb/code/GDF/src/fwdmodel/magnetic.cpp" name="/home/lb/code/GDF/src/fwdmodel/magnetic.cpp">
+<area shape="rect" id="node3" href="$fwdmodel_2magnetic_8hpp.html" title="Contains the interface for the magnetic forward model. " alt="" coords="1271,96,1371,123"/>
+<area shape="rect" id="node32" href="$voxelise_8hpp.html" title="Contains the interface for grid voxelisation. " alt="" coords="1363,245,1492,272"/>
+<area shape="rect" id="node4" href="$fwd_8hpp.html" title="Interface of common functions shared by forward models. " alt="" coords="1205,245,1333,272"/>
+<area shape="rect" id="node31" href="$gravmag_8hpp.html" title="Contains common interface used by both gravity and magnetic forward models. " alt="" coords="1447,171,1604,197"/>
+<area shape="rect" id="node5" href="$datatype_2datatypes_8hpp.html" title="Contains global types which is used for using world and all forward model types in bulk..." alt="" coords="667,320,825,347"/>
+<area shape="rect" id="node22" href="$interpolate_8hpp.html" title="Contains the interface for interpolation. " alt="" coords="1198,544,1340,571"/>
+<area shape="rect" id="node6" href="$datatype_2world_8hpp.html" title="World specification types. " alt="" coords="1035,768,1167,795"/>
+<area shape="rect" id="node18" href="$datatype_2gravity_8hpp.html" title="Contains gravity forward model datatypes. " alt="" coords="5,395,144,421"/>
+<area shape="rect" id="node26" href="$datatype_2magnetic_8hpp.html" title="Contains the GDF datatypes for the magnetic forward model. " alt="" coords="169,395,323,421"/>
+<area shape="rect" id="node27" href="$datatype_2mt_8hpp.html" title="Contains the basic GDF datatypes for communicating with the MT forward model. " alt="" coords="349,395,464,421"/>
+<area shape="rect" id="node28" href="$datatype_2seismic_8hpp.html" title="Contains the basic GDF datatypes for 1D seismic simulations. " alt="" coords="489,395,636,421"/>
+<area shape="rect" id="node29" href="$datatype_2contactpoint_8hpp.html" title="Contains the basic GDF datatypes for Contact point sensors. " alt="" coords="661,395,832,421"/>
+<area shape="rect" id="node30" href="$datatype_2thermal_8hpp.html" title="Contains the basic GDF datatypes for communication between forward models. " alt="" coords="857,395,1001,421"/>
+<area shape="rect" id="node7" href="$base_8hpp.html" title="Contains common type header includes. " alt="" coords="1064,843,1137,869"/>
+<area shape="rect" id="node19" href="$forwardmodels_8hpp.html" title="Contains the typedef for the different forward models. " alt="" coords="503,469,689,496"/>
+<area shape="rect" id="node20" href="$voxel_8hpp.html" title="Contains the voxelization data types. " alt="" coords="582,544,713,571"/>
+<area shape="rect" id="node21" href="$noise_8hpp.html" title="Contains the GDF datatype for specifiying sensor noise. " alt="" coords="738,544,869,571"/>
+<area shape="rect" id="node23" href="$interpolatorspec_8hpp.html" title="Contains the interface for interpolation. " alt="" coords="1292,693,1431,720"/>
+<area shape="rect" id="node24" href="$query_8hpp.html" title="Contains objects and methods for querying. " alt="" coords="1203,619,1317,645"/>
+<area shape="rect" id="node25" href="$grid_8hpp.html" title="Contains the interface for creating grids. " alt="" coords="1114,693,1216,720"/>
+<area shape="rect" id="node34" href="$transitions_8hpp.html" title="Contains the interface for computing layer transitions. " alt="" coords="1089,469,1231,496"/>
+</map>

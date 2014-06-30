@@ -1,0 +1,22 @@
+<map id="/home/lb/code/GDF/src/comms/messages.hpp" name="/home/lb/code/GDF/src/comms/messages.hpp">
+<area shape="rect" id="node2" href="$messages_8cpp.html" title="/home/lb/code/GDF/src\l/comms/messages.cpp" alt="" coords="5,97,163,138"/>
+<area shape="rect" id="node3" href="$clientheartbeat_8hpp.html" title="Heartbeat routers that deal with client heartbeating sending and receiving. " alt="" coords="290,278,472,319"/>
+<area shape="rect" id="node5" href="$worker_8hpp.html" title="The worker object connects with a delegator, then forwards job requests to a set of minions that actu..." alt="" coords="566,369,724,410"/>
+<area shape="rect" id="node8" href="$minion_8hpp.html" title="Object which actually performs the work requested then distributed by the worker. There can be many m..." alt="" coords="566,459,724,501"/>
+<area shape="rect" id="node10" href="$delegator_8hpp.html" title="The delegator is the intermediary between requesters and workers. It acts as the server to which work..." alt="" coords="823,369,981,410"/>
+<area shape="rect" id="node14" href="$requester_8hpp.html" title="Object which actually requests work and returns a result. Many of these can live in the same executab..." alt="" coords="1153,459,1311,501"/>
+<area shape="rect" id="node16" href="$router_8hpp.html" title="A router that implements polling on multiple zeromq sockets, and a signal&#45;based callback system depen..." alt="" coords="547,187,705,229"/>
+<area shape="rect" id="node18" href="$serverheartbeat_8hpp.html" title="Heartbeat routers that deal with server heartbeating sending and receiving. " alt="" coords="1006,278,1193,319"/>
+<area shape="rect" id="node20" href="$transport_8hpp.html" title="Contains the functions to communicate GDF datatypes across zmq in accordance with the GDFP&#45;SW (GDF Se..." alt="" coords="766,97,924,138"/>
+<area shape="rect" id="node4" href="$clientheartbeat_8cpp.html" title="Implementation of heartbeat routers that deal with client heartbeating sending and receiving..." alt="" coords="290,369,472,410"/>
+<area shape="rect" id="node6" href="$asyncworker_8hpp.html" title="Async policy for job multiplexing on worker side. " alt="" coords="683,550,841,591"/>
+<area shape="rect" id="node7" href="$worker_8cpp.html" title="Contains the implementation of the worker. " alt="" coords="383,459,541,501"/>
+<area shape="rect" id="node9" href="$minion_8cpp.html" title="/home/lb/code/GDF/src\l/comms/minion.cpp" alt="" coords="501,550,659,591"/>
+<area shape="rect" id="node11" href="$asyncdelegator_8cpp.html" title="Async policy for job multiplexing on server side. " alt="" coords="1030,641,1193,682"/>
+<area shape="rect" id="node12" href="$asyncdelegator_8hpp.html" title="Async policy for job multiplexing on server side. " alt="" coords="1030,550,1193,591"/>
+<area shape="rect" id="node13" href="$delegator_8cpp.html" title="/home/lb/code/GDF/src\l/comms/delegator.cpp" alt="" coords="918,459,1076,501"/>
+<area shape="rect" id="node15" href="$requester_8cpp.html" title="/home/lb/code/GDF/src\l/comms/requester.cpp" alt="" coords="1270,550,1428,591"/>
+<area shape="rect" id="node17" href="$router_8cpp.html" title="/home/lb/code/GDF/src\l/comms/router.cpp" alt="" coords="497,278,655,319"/>
+<area shape="rect" id="node19" href="$serverheartbeat_8cpp.html" title="Implementation of heartbeat routers that deal with server heartbeating sending and receiving..." alt="" coords="1006,369,1193,410"/>
+<area shape="rect" id="node21" href="$transport_8cpp.html" title="Contains the functions to communicate GDF datatypes across zmq in accordance with the GDFP&#45;SW (GDF Se..." alt="" coords="934,187,1092,229"/>
+</map>

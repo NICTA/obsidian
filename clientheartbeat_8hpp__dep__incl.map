@@ -1,0 +1,8 @@
+<map id="/home/lb/code/GDF/src/comms/clientheartbeat.hpp" name="/home/lb/code/GDF/src/comms/clientheartbeat.hpp">
+<area shape="rect" id="node2" href="$clientheartbeat_8cpp.html" title="Implementation of heartbeat routers that deal with client heartbeating sending and receiving..." alt="" coords="5,97,187,138"/>
+<area shape="rect" id="node3" href="$worker_8hpp.html" title="The worker object connects with a delegator, then forwards job requests to a set of minions that actu..." alt="" coords="211,97,369,138"/>
+<area shape="rect" id="node4" href="$asyncworker_8hpp.html" title="Async policy for job multiplexing on worker side. " alt="" coords="153,278,311,319"/>
+<area shape="rect" id="node5" href="$worker_8cpp.html" title="Contains the implementation of the worker. " alt="" coords="211,187,369,229"/>
+<area shape="rect" id="node6" href="$minion_8hpp.html" title="Object which actually performs the work requested then distributed by the worker. There can be many m..." alt="" coords="394,187,552,229"/>
+<area shape="rect" id="node7" href="$minion_8cpp.html" title="/home/lb/code/GDF/src\l/comms/minion.cpp" alt="" coords="394,278,552,319"/>
+</map>

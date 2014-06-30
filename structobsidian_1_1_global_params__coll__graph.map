@@ -1,0 +1,9 @@
+<map id="obsidian::GlobalParams" name="obsidian::GlobalParams">
+<area shape="rect" id="node2" href="$structobsidian_1_1_world_params.html" title="These are optimised. " alt="" coords="27,5,184,32"/>
+<area shape="rect" id="node3" href="$structobsidian_1_1_thermal_params.html" title="obsidian::ThermalParams" alt="" coords="20,56,191,83"/>
+<area shape="rect" id="node4" href="$structobsidian_1_1_contact_point_params.html" title="obsidian::ContactPointParams" alt="" coords="6,107,205,133"/>
+<area shape="rect" id="node5" href="$structobsidian_1_1_mag_params.html" title="obsidian::MagParams" alt="" coords="31,157,179,184"/>
+<area shape="rect" id="node6" href="$structobsidian_1_1_mt_aniso_params.html" title="obsidian::MtAnisoParams" alt="" coords="20,208,191,235"/>
+<area shape="rect" id="node7" href="$structobsidian_1_1_grav_params.html" title="obsidian::GravParams" alt="" coords="30,259,181,285"/>
+<area shape="rect" id="node8" href="$structobsidian_1_1_seismic1d_params.html" title="obsidian::Seismic1dParams" alt="" coords="13,309,197,336"/>
+</map>

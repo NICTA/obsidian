@@ -1,0 +1,7 @@
+<map id="/home/lb/code/GDF/src/fwdmodel/gravmag.hpp" name="/home/lb/code/GDF/src/fwdmodel/gravmag.hpp">
+<area shape="rect" id="node2" href="$fwdmodel_2gravity_8hpp.html" title="Contains the interface for the gravity forward model. " alt="" coords="5,97,163,138"/>
+<area shape="rect" id="node4" href="$fwdmodel_2magnetic_8hpp.html" title="Contains the interface for the magnetic forward model. " alt="" coords="187,97,351,138"/>
+<area shape="rect" id="node6" href="$gravmag_8cpp.html" title="Contains common functions used by both gravity and magnetic forward models. " alt="" coords="375,97,536,138"/>
+<area shape="rect" id="node3" href="$fwdmodel_2gravity_8cpp.html" title="Contains the implementation for the gravity forward model. " alt="" coords="5,187,163,229"/>
+<area shape="rect" id="node5" href="$fwdmodel_2magnetic_8cpp.html" title="Contains the implementation for the magnetic forward model. " alt="" coords="187,187,351,229"/>
+</map>

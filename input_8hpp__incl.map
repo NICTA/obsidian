@@ -1,0 +1,34 @@
+<map id="/home/lb/code/GDF/src/input/input.hpp" name="/home/lb/code/GDF/src/input/input.hpp">
+<area shape="rect" id="node4" href="$datatype_2datatypes_8hpp.html" title="Contains global types which is used for using world and all forward model types in bulk..." alt="" coords="1363,320,1521,347"/>
+<area shape="rect" id="node30" href="$prior_8hpp.html" title="prior/prior.hpp" alt="" coords="392,245,493,272"/>
+<area shape="rect" id="node32" href="$sensors_8hpp.html" title="One place integration point for sensors. " alt="" coords="1816,171,1963,197"/>
+<area shape="rect" id="node33" href="$app_2settings_8hpp.html" title="Settings constructs for program configuration. " alt="" coords="162,96,280,123"/>
+<area shape="rect" id="node35" href="$serial_8hpp.html" title="Integration of serialisation methods of jobs and results. " alt="" coords="1062,96,1175,123"/>
+<area shape="rect" id="node48" href="$fwd_8hpp.html" title="Interface of common functions shared by forward models. " alt="" coords="1936,245,2064,272"/>
+<area shape="rect" id="node5" href="$datatype_2world_8hpp.html" title="World specification types. " alt="" coords="1789,768,1920,795"/>
+<area shape="rect" id="node17" href="$datatype_2gravity_8hpp.html" title="Contains gravity forward model datatypes. " alt="" coords="1101,395,1240,421"/>
+<area shape="rect" id="node25" href="$datatype_2magnetic_8hpp.html" title="Contains the GDF datatypes for the magnetic forward model. " alt="" coords="1265,395,1419,421"/>
+<area shape="rect" id="node26" href="$datatype_2mt_8hpp.html" title="Contains the basic GDF datatypes for communicating with the MT forward model. " alt="" coords="1445,395,1560,421"/>
+<area shape="rect" id="node27" href="$datatype_2seismic_8hpp.html" title="Contains the basic GDF datatypes for 1D seismic simulations. " alt="" coords="1585,395,1732,421"/>
+<area shape="rect" id="node28" href="$datatype_2contactpoint_8hpp.html" title="Contains the basic GDF datatypes for Contact point sensors. " alt="" coords="1757,395,1928,421"/>
+<area shape="rect" id="node29" href="$datatype_2thermal_8hpp.html" title="Contains the basic GDF datatypes for communication between forward models. " alt="" coords="932,395,1076,421"/>
+<area shape="rect" id="node6" href="$base_8hpp.html" title="Contains common type header includes. " alt="" coords="1764,843,1837,869"/>
+<area shape="rect" id="node18" href="$forwardmodels_8hpp.html" title="Contains the typedef for the different forward models. " alt="" coords="1419,469,1605,496"/>
+<area shape="rect" id="node19" href="$voxel_8hpp.html" title="Contains the voxelization data types. " alt="" coords="1466,544,1597,571"/>
+<area shape="rect" id="node20" href="$noise_8hpp.html" title="Contains the GDF datatype for specifiying sensor noise. " alt="" coords="1310,544,1441,571"/>
+<area shape="rect" id="node21" href="$interpolate_8hpp.html" title="Contains the interface for interpolation. " alt="" coords="2037,544,2179,571"/>
+<area shape="rect" id="node22" href="$interpolatorspec_8hpp.html" title="Contains the interface for interpolation. " alt="" coords="2095,693,2233,720"/>
+<area shape="rect" id="node23" href="$query_8hpp.html" title="Contains objects and methods for querying. " alt="" coords="2000,619,2115,645"/>
+<area shape="rect" id="node24" href="$grid_8hpp.html" title="Contains the interface for creating grids. " alt="" coords="1917,693,2019,720"/>
+<area shape="rect" id="node34" href="$comms_2settings_8hpp.html" title="Settings constructs for program configuration. " alt="" coords="391,843,531,869"/>
+<area shape="rect" id="node36" href="$serial_2world_8hpp.html" title="World Model serialisation. " alt="" coords="873,245,985,272"/>
+<area shape="rect" id="node37" href="$serial_2gravity_8hpp.html" title="Gravity Forward Model serialisation. " alt="" coords="569,245,689,272"/>
+<area shape="rect" id="node38" href="$serial_2magnetic_8hpp.html" title="Magnetics Forward Model serialisation. " alt="" coords="714,245,848,272"/>
+<area shape="rect" id="node39" href="$serial_2mt_8hpp.html" title="MT Forward Model serialisation. " alt="" coords="1070,171,1167,197"/>
+<area shape="rect" id="node41" href="$serial_2seismic_8hpp.html" title="Seismic Forward Model serialisation. " alt="" coords="1630,245,1756,272"/>
+<area shape="rect" id="node42" href="$serial_2contactpoint_8hpp.html" title="Contact Point Forward Model serialisation. " alt="" coords="1251,245,1404,272"/>
+<area shape="rect" id="node43" href="$serial_2thermal_8hpp.html" title="Thermal Forward Model serialisation. " alt="" coords="1480,245,1605,272"/>
+<area shape="rect" id="node44" href="$commstypes_8hpp.html" title="Serialisation of comms/datatypes.hpp elements. " alt="" coords="2167,245,2324,272"/>
+<area shape="rect" id="node45" href="$comms_2datatypes_8hpp.html" title="comms/datatypes.hpp" alt="" coords="217,843,367,869"/>
+<area shape="rect" id="node40" href="$utility_8hpp.html" title="Contains the basic GDF datatypes for communication between forward models. " alt="" coords="1062,245,1175,272"/>
+</map>

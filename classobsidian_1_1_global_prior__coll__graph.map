@@ -1,0 +1,9 @@
+<map id="obsidian::GlobalPrior" name="obsidian::GlobalPrior">
+<area shape="rect" id="node2" href="$classobsidian_1_1prior_1_1_world_params_prior.html" title="obsidian::prior::WorldParams\lPrior" alt="" coords="6,5,197,46"/>
+<area shape="rect" id="node3" href="$classobsidian_1_1prior_1_1_thermal_params_prior.html" title="obsidian::prior::Thermal\lParamsPrior" alt="" coords="22,70,181,111"/>
+<area shape="rect" id="node4" href="$classobsidian_1_1prior_1_1_mag_params_prior.html" title="obsidian::prior::MagParams\lPrior" alt="" coords="11,135,192,177"/>
+<area shape="rect" id="node5" href="$classobsidian_1_1prior_1_1_grav_params_prior.html" title="obsidian::prior::GravParams\lPrior" alt="" coords="9,201,193,242"/>
+<area shape="rect" id="node6" href="$classobsidian_1_1prior_1_1_contact_point_params_prior.html" title="obsidian::prior::Contact\lPointParamsPrior" alt="" coords="23,266,180,307"/>
+<area shape="rect" id="node7" href="$classobsidian_1_1prior_1_1_seismic1d_params_prior.html" title="obsidian::prior::Seismic1d\lParamsPrior" alt="" coords="15,331,187,373"/>
+<area shape="rect" id="node8" href="$classobsidian_1_1prior_1_1_mt_aniso_params_prior.html" title="obsidian::prior::MtAniso\lParamsPrior" alt="" coords="22,397,181,438"/>
+</map>

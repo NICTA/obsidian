@@ -1,0 +1,26 @@
+<map id="/home/lb/code/GDF/src/infer/chainarray.cpp" name="/home/lb/code/GDF/src/infer/chainarray.cpp">
+<area shape="rect" id="node2" href="$chainarray_8hpp.html" title="Contains the interface for MCMC chains. " alt="" coords="321,544,456,571"/>
+<area shape="rect" id="node14" href="$metropolis_8hpp.html" title="Contains the interface for random&#45;walk Metropolis&#45;Hastings sampler. " alt="" coords="555,96,689,123"/>
+<area shape="rect" id="node15" href="$serial_2mcmc_8hpp.html" title="Serialisation of infer/mcmctypes.hpp types. " alt="" coords="714,96,832,123"/>
+<area shape="rect" id="node3" href="$db_8hpp.html" title="Contains the interface used for persistent storage of the MCMC data. " alt="" coords="265,619,343,645"/>
+<area shape="rect" id="node11" href="$mcmctypes_8hpp.html" title="Datatypes for MCMC. " alt="" coords="811,619,925,645"/>
+<area shape="rect" id="node5" href="$app_2settings_8hpp.html" title="Settings constructs for program configuration. " alt="" coords="371,693,489,720"/>
+<area shape="rect" id="node6" href="$comms_2settings_8hpp.html" title="Settings constructs for program configuration. " alt="" coords="545,768,684,795"/>
+<area shape="rect" id="node16" href="$utility_8hpp.html" title="Contains the basic GDF datatypes for communication between forward models. " alt="" coords="811,171,924,197"/>
+<area shape="rect" id="node17" href="$datatype_2datatypes_8hpp.html" title="Contains global types which is used for using world and all forward model types in bulk..." alt="" coords="1267,245,1425,272"/>
+<area shape="rect" id="node18" href="$datatype_2world_8hpp.html" title="World specification types. " alt="" coords="1542,693,1673,720"/>
+<area shape="rect" id="node27" href="$datatype_2gravity_8hpp.html" title="Contains gravity forward model datatypes. " alt="" coords="1718,320,1857,347"/>
+<area shape="rect" id="node35" href="$datatype_2magnetic_8hpp.html" title="Contains the GDF datatypes for the magnetic forward model. " alt="" coords="861,320,1015,347"/>
+<area shape="rect" id="node36" href="$datatype_2mt_8hpp.html" title="Contains the basic GDF datatypes for communicating with the MT forward model. " alt="" coords="1041,320,1156,347"/>
+<area shape="rect" id="node37" href="$datatype_2seismic_8hpp.html" title="Contains the basic GDF datatypes for 1D seismic simulations. " alt="" coords="1181,320,1328,347"/>
+<area shape="rect" id="node38" href="$datatype_2contactpoint_8hpp.html" title="Contains the basic GDF datatypes for Contact point sensors. " alt="" coords="1353,320,1524,347"/>
+<area shape="rect" id="node39" href="$datatype_2thermal_8hpp.html" title="Contains the basic GDF datatypes for communication between forward models. " alt="" coords="1549,320,1693,347"/>
+<area shape="rect" id="node19" href="$base_8hpp.html" title="Contains common type header includes. " alt="" coords="1535,768,1608,795"/>
+<area shape="rect" id="node28" href="$forwardmodels_8hpp.html" title="Contains the typedef for the different forward models. " alt="" coords="1311,395,1497,421"/>
+<area shape="rect" id="node29" href="$voxel_8hpp.html" title="Contains the voxelization data types. " alt="" coords="1115,469,1247,496"/>
+<area shape="rect" id="node30" href="$noise_8hpp.html" title="Contains the GDF datatype for specifiying sensor noise. " alt="" coords="1271,469,1403,496"/>
+<area shape="rect" id="node31" href="$interpolate_8hpp.html" title="Contains the interface for interpolation. " alt="" coords="1427,469,1569,496"/>
+<area shape="rect" id="node32" href="$interpolatorspec_8hpp.html" title="Contains the interface for interpolation. " alt="" coords="1289,619,1428,645"/>
+<area shape="rect" id="node33" href="$query_8hpp.html" title="Contains objects and methods for querying. " alt="" coords="1441,544,1556,571"/>
+<area shape="rect" id="node34" href="$grid_8hpp.html" title="Contains the interface for creating grids. " alt="" coords="1503,619,1605,645"/>
+</map>

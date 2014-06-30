@@ -1,0 +1,12 @@
+<map id="/home/lb/code/GDF/src/app/settings.hpp" name="/home/lb/code/GDF/src/app/settings.hpp">
+<area shape="rect" id="node2" href="$settings_8cpp.html" title="/home/lb/code/GDF/src\l/app/settings.cpp" alt="" coords="5,97,163,138"/>
+<area shape="rect" id="node3" href="$db_8hpp.html" title="Contains the interface used for persistent storage of the MCMC data. " alt="" coords="187,97,345,138"/>
+<area shape="rect" id="node7" href="$input_8hpp.html" title="Input constructs for problem specification. " alt="" coords="461,97,619,138"/>
+<area shape="rect" id="node4" href="$db_8cpp.html" title="Contains implementation of the database structure used for persistent storage of the MCMC data..." alt="" coords="5,187,163,229"/>
+<area shape="rect" id="node5" href="$chainarray_8hpp.html" title="Contains the interface for MCMC chains. " alt="" coords="187,187,345,229"/>
+<area shape="rect" id="node6" href="$chainarray_8cpp.html" title="Contains the implementation of MCMC chains. " alt="" coords="95,278,253,319"/>
+<area shape="rect" id="node8" href="$common_8hpp.html" title="Common header files included by all the input implementations. Contains helper functions. " alt="" coords="461,187,619,229"/>
+<area shape="rect" id="node11" href="$input_8cpp.html" title="Input implementations. " alt="" coords="643,278,801,319"/>
+<area shape="rect" id="node9" href="$magnetism_8cpp.html" title="Input implementations related to magnetics forward model. " alt="" coords="278,278,436,319"/>
+<area shape="rect" id="node10" href="$global_8cpp.html" title="Input implementations related to global objects. " alt="" coords="461,278,619,319"/>
+</map>

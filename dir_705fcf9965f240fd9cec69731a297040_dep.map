@@ -1,0 +1,14 @@
+<map id="/home/lb/code/GDF/src/serial" name="/home/lb/code/GDF/src/serial">
+<area shape="rect" id="node1" href="dir_705fcf9965f240fd9cec69731a297040.html" title="serial" alt="" coords="27,101,99,149"/>
+<area shape="rect" id="node2" href="dir_f7bb93a08acf6e9b92a6945173e55419.html" title="datatype" alt="" coords="75,197,147,245"/>
+<area shape="rect" id="edge1-headlabel" href="dir_000014_000005.html" title="10" alt="" coords="91,170,105,185"/>
+<area shape="rect" id="node3" href="dir_71b8cd979d71874794d555bcca9a1e41.html" title="infer" alt="" coords="75,5,147,53"/>
+<area shape="rect" id="edge2-headlabel" href="dir_000014_000009.html" title="1" alt="" coords="70,58,78,72"/>
+<area shape="rect" id="node4" href="dir_cd19d57bc61472c00d41d10acedd30ef.html" title="comms" alt="" coords="123,101,195,149"/>
+<area shape="rect" id="edge3-headlabel" href="dir_000014_000004.html" title="2" alt="" coords="100,110,108,124"/>
+<area shape="rect" id="edge4-headlabel" href="dir_000009_000014.html" title="1" alt="" coords="95,83,103,97"/>
+<area shape="rect" id="edge5-headlabel" href="dir_000009_000004.html" title="1" alt="" coords="142,74,150,89"/>
+<area shape="rect" id="edge7-headlabel" href="dir_000004_000014.html" title="4" alt="" coords="113,126,121,141"/>
+<area shape="rect" id="edge6-headlabel" href="dir_000004_000005.html" title="1" alt="" coords="134,178,142,192"/>
+<area shape="rect" id="clust1" href="dir_60ee07eb13988edd1ed423ba407a0005.html" title="src" alt="" coords="16,65,109,160"/>
+</map>

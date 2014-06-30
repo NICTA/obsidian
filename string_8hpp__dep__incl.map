@@ -1,0 +1,10 @@
+<map id="/home/lb/code/GDF/src/io/string.hpp" name="/home/lb/code/GDF/src/io/string.hpp">
+<area shape="rect" id="node2" href="$console_8cpp.html" title="/home/lb/code/GDF/src\l/app/console.cpp" alt="" coords="5,97,163,138"/>
+<area shape="rect" id="node3" href="$common_8hpp.html" title="Common header files included by all the input implementations. Contains helper functions. " alt="" coords="297,187,455,229"/>
+<area shape="rect" id="node6" href="$input_8cpp.html" title="Input implementations. " alt="" coords="118,278,276,319"/>
+<area shape="rect" id="node7" href="$string_8cpp.html" title="/home/lb/code/GDF/src\l/io/string.cpp" alt="" coords="290,97,448,138"/>
+<area shape="rect" id="node8" href="$csv_8hpp.html" title="Contains the interface of various IO interop with CSV. " alt="" coords="473,97,631,138"/>
+<area shape="rect" id="node4" href="$magnetism_8cpp.html" title="Input implementations related to magnetics forward model. " alt="" coords="483,278,641,319"/>
+<area shape="rect" id="node5" href="$global_8cpp.html" title="Input implementations related to global objects. " alt="" coords="301,278,459,319"/>
+<area shape="rect" id="node9" href="$csv_8cpp.html" title="Contains the interface of various IO interop with CSV. " alt="" coords="479,187,637,229"/>
+</map>

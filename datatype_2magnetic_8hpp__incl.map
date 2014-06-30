@@ -1,0 +1,11 @@
+<map id="/home/lb/code/GDF/src/datatype/magnetic.hpp" name="/home/lb/code/GDF/src/datatype/magnetic.hpp">
+<area shape="rect" id="node2" href="$forwardmodels_8hpp.html" title="Contains the typedef for the different forward models. " alt="" coords="627,96,813,123"/>
+<area shape="rect" id="node3" href="$base_8hpp.html" title="Contains common type header includes. " alt="" coords="399,469,472,496"/>
+<area shape="rect" id="node14" href="$voxel_8hpp.html" title="Contains the voxelization data types. " alt="" coords="735,171,867,197"/>
+<area shape="rect" id="node15" href="$noise_8hpp.html" title="Contains the GDF datatype for specifiying sensor noise. " alt="" coords="891,171,1023,197"/>
+<area shape="rect" id="node16" href="$interpolate_8hpp.html" title="Contains the interface for interpolation. " alt="" coords="569,171,711,197"/>
+<area shape="rect" id="node17" href="$datatype_2world_8hpp.html" title="World specification types. " alt="" coords="462,395,593,421"/>
+<area shape="rect" id="node18" href="$interpolatorspec_8hpp.html" title="Contains the interface for interpolation. " alt="" coords="741,320,880,347"/>
+<area shape="rect" id="node19" href="$query_8hpp.html" title="Contains objects and methods for querying. " alt="" coords="583,245,697,272"/>
+<area shape="rect" id="node20" href="$grid_8hpp.html" title="Contains the interface for creating grids. " alt="" coords="563,320,665,347"/>
+</map>

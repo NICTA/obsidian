@@ -1,0 +1,6 @@
+<map id="/home/lb/code/GDF/src/comms/worker.hpp" name="/home/lb/code/GDF/src/comms/worker.hpp">
+<area shape="rect" id="node2" href="$asyncworker_8hpp.html" title="Async policy for job multiplexing on worker side. " alt="" coords="5,187,163,229"/>
+<area shape="rect" id="node3" href="$worker_8cpp.html" title="Contains the implementation of the worker. " alt="" coords="63,97,221,138"/>
+<area shape="rect" id="node4" href="$minion_8hpp.html" title="Object which actually performs the work requested then distributed by the worker. There can be many m..." alt="" coords="246,97,404,138"/>
+<area shape="rect" id="node5" href="$minion_8cpp.html" title="/home/lb/code/GDF/src\l/comms/minion.cpp" alt="" coords="246,187,404,229"/>
+</map>
