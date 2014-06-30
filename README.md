@@ -62,7 +62,8 @@ will suffice to build the project.
 
 Documentation
 -------------
-There is doxygen documentaion available here. To compile the documentation,
+There is doxygen documentaion available
+[here](http://nicta.github.io/obsidian). To compile the documentation locally,
 just run
 `make doc`
 
@@ -84,7 +85,8 @@ cnpy can be found along with the license in the src/io directory.
 
 Bug Reports
 -----------
-If you find a bug, please open an [issue]().
+If you find a bug, please open an
+[issue](http://github.com/NICTA/obsidian/issues).
 
 Contributing 
 ------------
