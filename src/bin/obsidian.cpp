@@ -27,9 +27,6 @@
 #include "serial/serial.hpp"
 #include "app/asyncdelegator.hpp"
 #include "app/signal.hpp"
-#include "infer/mcmc.hpp"
-#include "infer/metropolis.hpp"
-#include "infer/adaptive.hpp"
 #include "fwdmodel/fwd.hpp"
 #include "datatype/sensors.hpp"
 #include "detail.hpp"
@@ -65,51 +62,35 @@ int main(int ac, char* av[])
   readInputFile(vm["inputfile"].as<std::string>(), vm);
 
   std::set<ForwardModel> sensorsEnabled = parseSensorsEnabled(vm);
-  DelegatorSettings delegatorSettings = parseDelegatorSettings(vm);
   GlobalSpec globalSpec = parseSpec<GlobalSpec>(vm, sensorsEnabled);
-  WorldSpec& worldSpec = globalSpec.world;
-  std::vector<world::InterpolatorSpec> interp = world::worldspec2Interp(worldSpec);
+  std::vector<world::InterpolatorSpec> interp = world::worldspec2Interp(globalSpec.world);
   GlobalPrior prior = parsePrior<GlobalPrior>(vm, sensorsEnabled);
-  GlobalResults results = loadResults(worldSpec, vm, sensorsEnabled);
-  
-  Eigen::VectorXd theta = prior.sample(gen);
-  GlobalParams globalParams = prior.reconstruct(theta);
-  WorldParams worldParams = globalParams.world;
+  GlobalResults results = loadResults(globalSpec.world, vm, sensorsEnabled);
     
-  if (sensorsEnabled.count(ForwardModel::GRAVITY))
+  //cache for gravity in this case
+  GravCache gravCache = fwd::generateCache<ForwardModel::GRAVITY>(interp, globalSpec.world, globalSpec.grav);
+
+  // Image we're sampling according to some smart stategy in this bound
+  // (stateline's entire job is choosing points to evaluate within this bound)
+  Eigen::VectorXd minTheta = prior.world.thetaMinBound();
+  Eigen::VectorXd maxTheta = prior.world.thetaMaxBound();
+
+  // The above structures are expensive to construct,
+  // but actually running the sensor model (below) is cheaper, and is done many
+  // times
+  for (uint i=0; i<1000;i++)
   {
-    GravResults real = results.grav;
-    GravSpec& gravSpec = globalSpec.grav;
-    GravParams& params = globalParams.grav;
+    // Imagine this theta has been given to us by stateline (instead of sampled
+    // from prior)
+    Eigen::VectorXd theta = prior.sample(gen);
 
-    GravCache cache = fwd::generateCache<ForwardModel::GRAVITY>(interp, worldSpec, gravSpec);
-    GravResults synthetic = fwd::forwardModel<ForwardModel::GRAVITY>(gravSpec, cache, worldParams);
-    synthetic.likelihood = lh::likelihood<ForwardModel::GRAVITY>(synthetic, real, gravSpec);
+
+    // reconstruct the associated world, then evaluate its likelihood
+    GlobalParams globalParams = prior.reconstruct(theta);
+    GravResults synthetic = fwd::forwardModel<ForwardModel::GRAVITY>(globalSpec.grav, gravCache, globalParams.world);
+    synthetic.likelihood = lh::likelihood<ForwardModel::GRAVITY>(synthetic, results.grav, globalSpec.grav);
+    std::cout << synthetic.likelihood << std::endl;
   }
-
-  // if (enabled.count(ForwardModel::MAGNETICS))
-  // {
-  //   MagCache mag;
-  // }
-  // if (enabled.count(ForwardModel::MTANISO))
-  // {
-  //   MtAnisoCache mt;
-  // }
-  // if (enabled.count(ForwardModel::SEISMIC1D))
-  // {
-  //   Seismic1dCache s1d;
-  // }
-  // if (enabled.count(ForwardModel::CONTACTPOINT))
-  // {
-  //   ContactPointCache cpoint;
-  // }
-  // if (enabled.count(ForwardModel::THERMAL))
-  // {
-  //   ThermalCache therm;
-  // }
-
-  // auto proposal = std::bind(&mcmc::adaptiveGaussianProposal,ph::_1, ph::_2,
-  //                           prior.world.thetaMinBound(), prior.world.thetaMaxBound()); 
 
   return 0;
 }
