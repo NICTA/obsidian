@@ -33,6 +33,7 @@
 #include "fwdmodel/fwd.hpp"
 #include "datatype/sensors.hpp"
 #include "detail.hpp"
+#include "likelihood/likelihood.hpp"
 
 using namespace obsidian;
 using namespace stateline;
@@ -51,98 +52,64 @@ po::options_description commandLineOptions()
   ("anneallength,a", po::value<uint>()->default_value(1000), "anneal chains with n samples before starting mcmc");
   return cmdLine;
 }
-
+    
 int main(int ac, char* av[])
 {
-  init::initialiseSignalHandler();
-  // Get the settings from the command line
-  auto vm = init::initProgramOptions(ac, av, commandLineOptions());
-
-  // Set up a random generator here
   std::random_device rd;
   std::mt19937 gen(rd());
 
-  LOG(INFO)<< "Initialise the various settings and objects";
+  // Get the settings from the command line
+  auto vm = init::initProgramOptions(ac, av, commandLineOptions());
 
   readConfigFile(vm["configfile"].as<std::string>(), vm);
   readInputFile(vm["inputfile"].as<std::string>(), vm);
 
   std::set<ForwardModel> sensorsEnabled = parseSensorsEnabled(vm);
   DelegatorSettings delegatorSettings = parseDelegatorSettings(vm);
-  MCMCSettings mcmcSettings = parseMCMCSettings(vm);
-  DBSettings dbSettings = parseDBSettings(vm);
-  dbSettings.recover = vm["recover"].as<bool>();
-  WorldSpec worldSpec = parseSpec<WorldSpec>(vm, sensorsEnabled);
+  GlobalSpec globalSpec = parseSpec<GlobalSpec>(vm, sensorsEnabled);
+  WorldSpec& worldSpec = globalSpec.world;
+  std::vector<world::InterpolatorSpec> interp = world::worldspec2Interp(worldSpec);
   GlobalPrior prior = parsePrior<GlobalPrior>(vm, sensorsEnabled);
   GlobalResults results = loadResults(worldSpec, vm, sensorsEnabled);
-
-  LOG(INFO)<< "Create the specification data (serialised) for all the jobs";
-  std::string worldSpecData = obsidian::comms::serialise(worldSpec);
-  std::vector<uint> sensorId;
-  std::vector<std::string> sensorSpecData;
-  std::vector<std::string> sensorReadings;
-  applyToSensorsEnabled<getData>(sensorsEnabled, std::ref(sensorId), std::ref(sensorSpecData), std::ref(sensorReadings),
-                                 std::cref(worldSpec), std::ref(results), std::cref(vm), std::cref(sensorsEnabled));
-
-  LOG(INFO)<< "Initialise comms";
-  stateline::comms::Delegator delegator(worldSpecData, sensorId, sensorSpecData, sensorReadings, delegatorSettings);
-  delegator.start();
-
-  LOG(INFO)<< "Initialise parallel tempering mcmc";
-  GeoAsyncPolicy policy(delegator, prior, sensorsEnabled);
-
-  // Start the sampling
-  LOG(INFO)<< "Starting inversion: Run for " << mcmcSettings.wallTime << " seconds";
-  LOG(INFO)<< "Problem dimensionality: " << prior.size();
-  mcmc::Sampler mcmc(mcmcSettings, dbSettings, prior.size(), global::interruptedBySignal);
-
-  std::vector<Eigen::VectorXd> initialThetas;
-
-  LOG(INFO)<< "Loading / generating initial thetas for the chains";
-
-  for (uint s = 0; s < mcmcSettings.stacks; s++)
+  
+  Eigen::VectorXd theta = prior.sample(gen);
+  GlobalParams globalParams = prior.reconstruct(theta);
+  WorldParams worldParams = globalParams.world;
+    
+  if (sensorsEnabled.count(ForwardModel::GRAVITY))
   {
-    for (uint c = 0; c < mcmcSettings.chains; c++)
-    {
-      if (dbSettings.recover && !mcmc.chains().states(s * mcmcSettings.chains + c).empty())
-      {
-        initialThetas.push_back(mcmc.chains().states(s * mcmcSettings.chains + c)[0].sample);
-      } else
-      {
-        uint nSamples = vm["anneallength"].as<uint>();
-        std::vector<Eigen::VectorXd> thetas(nSamples);
-        double lowestEnergy = std::numeric_limits<double>::max();
-        uint bestIndex = 0;
-        for ( uint i=0; i<nSamples; i++)
-        {
-          Eigen::VectorXd cand = prior.sample(gen);
-          thetas[i] = cand;
-          policy.submit(i,cand);
-        }
-        for (uint i=0; i<nSamples; i++)
-        {
-          auto result = policy.retrieve();
-          uint id = result.first;
-          double energy = result.second;
-          if (energy < lowestEnergy)
-          {
-            bestIndex = id;
-            lowestEnergy = energy;
-            LOG(INFO) << "stack "<< s << " chain " << c << " best energy: " << lowestEnergy;
-          }
-        }
-        initialThetas.push_back(thetas[bestIndex]);
-      }
-    }
+    GravResults real = results.grav;
+    GravSpec& gravSpec = globalSpec.grav;
+    GravParams& params = globalParams.grav;
+
+    GravCache cache = fwd::generateCache<ForwardModel::GRAVITY>(interp, worldSpec, gravSpec);
+    GravResults synthetic = fwd::forwardModel<ForwardModel::GRAVITY>(gravSpec, cache, worldParams);
+    synthetic.likelihood = lh::likelihood<ForwardModel::GRAVITY>(synthetic, real, gravSpec);
   }
 
-  
-  auto proposal = std::bind(&mcmc::adaptiveGaussianProposal,ph::_1, ph::_2,
-                            prior.world.thetaMinBound(), prior.world.thetaMaxBound()); 
-  mcmc.run(policy, initialThetas, proposal, mcmcSettings.wallTime);
+  // if (enabled.count(ForwardModel::MAGNETICS))
+  // {
+  //   MagCache mag;
+  // }
+  // if (enabled.count(ForwardModel::MTANISO))
+  // {
+  //   MtAnisoCache mt;
+  // }
+  // if (enabled.count(ForwardModel::SEISMIC1D))
+  // {
+  //   Seismic1dCache s1d;
+  // }
+  // if (enabled.count(ForwardModel::CONTACTPOINT))
+  // {
+  //   ContactPointCache cpoint;
+  // }
+  // if (enabled.count(ForwardModel::THERMAL))
+  // {
+  //   ThermalCache therm;
+  // }
 
-  // This will gracefully stop all delegators internal threads
-  delegator.stop();
+  // auto proposal = std::bind(&mcmc::adaptiveGaussianProposal,ph::_1, ph::_2,
+  //                           prior.world.thetaMinBound(), prior.world.thetaMaxBound()); 
 
   return 0;
 }

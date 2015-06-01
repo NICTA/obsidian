@@ -47,6 +47,7 @@ set(PROTOBUF_ROOT ${PREREQ_DIR})
 set(ZMQ_ROOT_DIR ${PREREQ_DIR})
 set(EIGEN3_ROOT_DIR ${PREREQ_DIR})
 set(LEVELDB_ROOT_DIR ${PREREQ_DIR})
+set(STATELINE_ROOT_DIR "/home/lb/build/stateline/install")
 
 ##############################################################################
 # LOGGING (GLOG)
@@ -56,28 +57,28 @@ FIND_PACKAGE (Glog REQUIRED )
 # Logging toggle
 OPTION ( NO_LOGGING "Set to true to compile out any Logging statements" OFF)
 IF ( NO_LOGGING )
-    ADD_DEFINITIONS ( -DNO_LOGGING )
+  ADD_DEFINITIONS ( -DNO_LOGGING )
 ENDIF ( NO_LOGGING )
 
 # Conditional linking of logging
 MACRO ( LINK_LOGGING projectName )
-    IF ( NOT NO_LOGGING )
-      TARGET_LINK_LIBRARIES (${projectName} ${GLOG_LIBRARY} )
-    ENDIF ( NOT NO_LOGGING )
+  IF ( NOT NO_LOGGING )
+    TARGET_LINK_LIBRARIES (${projectName} ${GLOG_LIBRARY} )
+  ENDIF ( NOT NO_LOGGING )
 ENDMACRO ( LINK_LOGGING projectName )
 
 ##############################################################################
 # COMPILATION
 ##############################################################################
 
-  IF ( CMAKE_COMPILER_IS_GNUCXX )
-    SET ( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall -Wno-unused-local-typedefs -ggdb -g  -D_GLIBCXX_USE_NANOSLEEP" )
-    SET ( CMAKE_CXX_FLAGS_RELWITHDEBINFO "-std=c++11 -Wall -Wno-unused-local-typedefs -ggdb -g -D_GLIBCXX_USE_NANOSLEEP -DNDEBUG -O2" )
-    SET ( CMAKE_CXX_FLAGS_RELEASE "-std=c++11 -D_GLIBCXX_USE_NANOSLEEP -DNDEBUG -O2")
-  ELSE( CMAKE_COMPILER_IS_GNUCXX)
-    SET ( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall -ggdb -g  -D_GLIBCXX_USE_NANOSLEEP" )
-    SET ( CMAKE_CXX_FLAGS_RELWITHDEBINFO "-std=c++11 -Wall -ggdb -g -D_GLIBCXX_USE_NANOSLEEP -DNDEBUG -O2" )
-  ENDIF ( CMAKE_COMPILER_IS_GNUCXX )
+IF ( CMAKE_COMPILER_IS_GNUCXX )
+  SET ( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wfatal-errors -Wall -Wno-unused-local-typedefs -ggdb -g  -D_GLIBCXX_USE_NANOSLEEP" )
+  SET ( CMAKE_CXX_FLAGS_RELWITHDEBINFO "-std=c++11 -Wfatal-errors -Wall -Wno-unused-local-typedefs -ggdb -g -D_GLIBCXX_USE_NANOSLEEP -DNDEBUG -O2" )
+  SET ( CMAKE_CXX_FLAGS_RELEASE "-std=c++11 -D_GLIBCXX_USE_NANOSLEEP -DNDEBUG -O2")
+ELSE( CMAKE_COMPILER_IS_GNUCXX)
+  SET ( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall -ggdb -g  -D_GLIBCXX_USE_NANOSLEEP" )
+  SET ( CMAKE_CXX_FLAGS_RELWITHDEBINFO "-std=c++11 -Wall -ggdb -g -D_GLIBCXX_USE_NANOSLEEP -DNDEBUG -O2" )
+ENDIF ( CMAKE_COMPILER_IS_GNUCXX )
 
 ##############################################################################
 # PREREQUISITE LIBRARIES
@@ -85,8 +86,8 @@ ENDMACRO ( LINK_LOGGING projectName )
 
 # pthreads
 IF ( ${CMAKE_SYSTEM_NAME} STREQUAL "Linux" )
-    MESSAGE ( STATUS "Linux detected, telling compiler to link in pthreads..." )
-    SET ( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread" )
+  MESSAGE ( STATUS "Linux detected, telling compiler to link in pthreads..." )
+  SET ( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread" )
 ENDIF ( ${CMAKE_SYSTEM_NAME} STREQUAL "Linux" )
 
 # Boost
@@ -96,11 +97,11 @@ SET ( Boost_USE_STATIC_LIBS ON )
 SET ( Boost_USE_STATIC_RUNTIME ON )
 
 FIND_PACKAGE ( Boost REQUIRED COMPONENTS date_time
-                                         thread
-                                         program_options
-                                         system
-                                         filesystem
-                                         timer )
+  thread
+  program_options
+  system
+  filesystem
+  timer )
 
 #ZeroMQ
 FIND_PACKAGE ( ZMQ REQUIRED )
@@ -124,18 +125,22 @@ MESSAGE ( STATUS "GTEST directory: ${GTEST_SRC_DIR}" )
 SET(GTEST_DIR ${GTEST_SRC_DIR})
 SET ( GTEST_INCLUDE_DIR ${GTEST_SRC_DIR}/include )
 
+# Stateline
+find_package( Stateline )
+
 ##############################################################################
 # INCLUDE DIRECTORIES
 ##############################################################################
 
 INCLUDE_DIRECTORIES ("${OBSIDIAN_SOURCE_DIR}/src"
-                     "${CMAKE_CURRENT_BINARY_DIR}/src" # for protobuf files
-                      ${ZMQ_INCLUDE_DIR}
-                      ${GLOG_INCLUDE_DIR}
-                      ${Boost_INCLUDE_DIR}
-                      ${EIGEN3_INCLUDE_DIR}
-                      ${GTEST_DIR}
-                      ${GTEST_INCLUDE_DIR} )
+  "${CMAKE_CURRENT_BINARY_DIR}/src" # for protobuf files
+  ${ZMQ_INCLUDE_DIR}
+  ${GLOG_INCLUDE_DIR}
+  ${Boost_INCLUDE_DIR}
+  ${EIGEN3_INCLUDE_DIR}
+  ${GTEST_DIR}
+  ${GTEST_INCLUDE_DIR} 
+  ${STATELINE_INCLUDE_DIR})
 
 
 ##############################################################################

@@ -9,6 +9,7 @@
 # FILL THESE IN
 export OBSIDIAN_SOURCE_DIR=$(readlink -f $(dirname $0))
 export PREREQ_DIR=$OBSIDIAN_SOURCE_DIR/prereqs
+export STATELINE_ROOT_DIR= /home/lb/build/stateline/install
 
 cmake $OBSIDIAN_SOURCE_DIR -DOBSIDIAN_BINARY_DIR=$(pwd) -DOBSIDIAN_SOURCE_DIR=$OBSIDIAN_SOURCE_DIR -DPREREQ_DIR=$PREREQ_DIR $@
 
