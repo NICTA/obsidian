@@ -14,7 +14,7 @@
 
 include(FindPackageHandleStandardArgs)
 
-find_path(STATELINE_INCLUDE_DIR stateline/app/worker.hpp
+find_path(STATELINE_INCLUDE_DIR stateline/app/workerwrapper.hpp
   HINTS
   ${STATELINE_ROOT_DIR}
   PATH_SUFFIXES include

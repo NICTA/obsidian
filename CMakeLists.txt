@@ -47,7 +47,7 @@ set(PROTOBUF_ROOT ${PREREQ_DIR})
 set(ZMQ_ROOT_DIR ${PREREQ_DIR})
 set(EIGEN3_ROOT_DIR ${PREREQ_DIR})
 set(LEVELDB_ROOT_DIR ${PREREQ_DIR})
-set(STATELINE_ROOT_DIR "/home/lb/build/stateline/install")
+set(STATELINE_ROOT_DIR ${PREREQ_DIR})
 
 ##############################################################################
 # LOGGING (GLOG)
