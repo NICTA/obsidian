@@ -1,0 +1,6 @@
+# qtcreator
+CMakeLists.txt.user
+*.autosave
+
+# vim
+*.swp
