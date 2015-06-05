@@ -23,6 +23,12 @@
 #include <zmq.hpp>
 #include <stateline/comms/minion.hpp>
 #include <stateline/comms/worker.hpp>
+#include <stateline/app/commandline.hpp>
+#include <stateline/app/signal.hpp>
+#include <stateline/app/logging.hpp>
+
+namespace sl = stateline;
+namespace po = boost::program_options;
 
 // Project
 // #include "app/settings.hpp"
@@ -36,28 +42,28 @@
 // #include "world/grid.hpp"
 // #include "serial/serial.hpp"
 // #include "likelihood/likelihood.hpp"
-// #include "fwdmodel/fwd.hpp"
-// #include "detail.hpp"
+#include "fwdmodel/fwd.hpp"
+#include "detail.hpp"
 // #include "app/signal.hpp"
 // #include "app/asyncworker.hpp"
 
 // namespaces
-// using namespace obsidian;
+using namespace obsidian;
 // using namespace stateline;
 
-// po::options_description commandLineOptions()
-// {
-//   std::string defaultJobListOptions = io::join(getAllJobTypes(), ",");
+po::options_description commandLineOptions()
+{
+  std::string defaultJobListOptions = io::join(getAllJobTypes(), ",");
 
-//   po::options_description cmdLine("Delegator Command Line Options");
-//   cmdLine.add_options() //
-//   ("address,a", po::value<std::string>()->default_value("localhost:5555"), "Address and port of delegator") //
-//   ("jobtypes,j", po::value<std::string>()->default_value(defaultJobListOptions),
-//    ("subset of comma separated " + defaultJobListOptions).c_str()) //
-//   ("nthreads,t", po::value<uint>()->default_value(1), "Number of worker threads") //
-//   ("configfile,c", po::value<std::string>()->default_value("obsidian_config"), "configuration file");
-//   return cmdLine;
-// }
+  po::options_description cmdLine("Delegator Command Line Options");
+  cmdLine.add_options() //
+    ("address,a", po::value<std::string>()->default_value("localhost:5555"), "Address and port of delegator") //
+    ("jobtypes,j", po::value<std::string>()->default_value(defaultJobListOptions),
+    ("subset of comma separated " + defaultJobListOptions).c_str()) //
+    ("nthreads,t", po::value<uint>()->default_value(1), "Number of worker threads") //
+    ("configfile,c", po::value<std::string>()->default_value("obsidian_config"), "configuration file");
+  return cmdLine;
+}
 
 // //! Each thread has a requester which deals with serialising and unserialising the jobs and results
 // //!
@@ -114,7 +120,9 @@ void runWorker(zmq::context_t& context, const po::variables_map& vm, bool& runni
 {
   json config = initConfig(vm);
 
-  std::vector<std::string> jobTypes = config["jobTypes"];
+  // Only gravity
+  std::vector<std::string> jobTypes {configHeading<ForwardModel::GRAVITY>()};
+
   sl::comms::Minion minion(context, jobTypes);
 
   // Create the negative log likelihood function of the target distribution.
@@ -152,6 +160,11 @@ int main(int ac, char* av[])
   LOG(INFO) << "started server in thread";
   LOG(INFO) << "\033[1;31mstarting worker in thread\033[0m";
   LOG(INFO) << "started sampler in thread";
+
+  // Only gravity
+  std::vector<std::String> jobTypes {configHeading<ForwardModel::GRAVITY>()};
+
+
 
   while(!sl::global::interruptedBySignal)
   {

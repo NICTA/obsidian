@@ -186,17 +186,20 @@ endif(DOXYGEN_FOUND)
 ##############################################################################
 
 
-SET (obsidianBaseLibraries settings
-                      console
+SET (obsidianBaseLibraries #settings
+                      #console
                       io
                       ${ZMQ_LIBRARY}
                       ${GLOG_LIBRARY}
                       ${LEVELDB_LIBRARY}
                       ${Boost_FILESYSTEM_LIBRARY}
                       ${Boost_SYSTEM_LIBRARY}
-                      ${Boost_PROGRAM_OPTIONS_LIBRARY})
+                      ${Boost_PROGRAM_OPTIONS_LIBRARY}
+                      ${STATELINE_LIBRARIES})
 
-SET (obsidianAlgoLibraries distrib
+message(STATUS "STATELINE_LIBRARIES=${STATELINE_LIBRARIES}")
+
+SET (obsidianAlgoLibraries
                       fwd-gravmag
                       fwd-mt
                       fwd-seismic
@@ -204,11 +207,7 @@ SET (obsidianAlgoLibraries distrib
                       fwd-thermal
                       world
                       prior
-                      chainarray
-                      serial
-                      db
-                      lh
-                      distrib)
+                      serial)
 
 SET (obsidianCommsLibraries messages
                        serial
@@ -238,16 +237,16 @@ MACRO ( ADD_SUBPROJECT directory )
 ENDMACRO ( ADD_SUBPROJECT directory )
 
 ADD_SUBPROJECT(src/test)
-ADD_SUBPROJECT(src/app)
+#ADD_SUBPROJECT(src/app)
 ADD_SUBPROJECT(src/serial)
 ADD_SUBPROJECT(src/prior)
 ADD_SUBPROJECT(src/world)
 ADD_SUBPROJECT(src/distrib)
-ADD_SUBPROJECT(src/comms)
+#ADD_SUBPROJECT(src/comms)
 ADD_SUBPROJECT(src/fwdmodel)
 ADD_SUBPROJECT(src/io)
-ADD_SUBPROJECT(src/db)
-ADD_SUBPROJECT(src/infer)
+#ADD_SUBPROJECT(src/db)
+#ADD_SUBPROJECT(src/infer)
 ADD_SUBPROJECT(src/input)
 ADD_SUBPROJECT(src/bin)
 ADD_SUBPROJECT(src/likelihood)

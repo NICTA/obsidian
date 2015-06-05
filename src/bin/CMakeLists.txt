@@ -16,12 +16,12 @@ IF(CMAKE_BUILD_TYPE MATCHES Release)
   # Obsidian Release
   ############################################################################
   ADD_EXECUTABLE (obsidian obsidian.cpp
-                           ${OBSIDIAN_SOURCE_DIR}/src/app/blob.cpp
-                           ${OBSIDIAN_SOURCE_DIR}/src/comms/blob.cpp
-                           ${OBSIDIAN_SOURCE_DIR}/src/db/blob.cpp
-                           ${OBSIDIAN_SOURCE_DIR}/src/distrib/blob.cpp
+                           #${OBSIDIAN_SOURCE_DIR}/src/app/blob.cpp
+                           #${OBSIDIAN_SOURCE_DIR}/src/comms/blob.cpp
+                           #${OBSIDIAN_SOURCE_DIR}/src/db/blob.cpp
+                           #${OBSIDIAN_SOURCE_DIR}/src/distrib/blob.cpp
                            ${OBSIDIAN_SOURCE_DIR}/src/fwdmodel/blob.cpp
-                           ${OBSIDIAN_SOURCE_DIR}/src/infer/blob.cpp
+                           #${OBSIDIAN_SOURCE_DIR}/src/infer/blob.cpp
                            ${OBSIDIAN_SOURCE_DIR}/src/input/blob.cpp
                            ${OBSIDIAN_SOURCE_DIR}/src/io/blob.cpp
                            ${OBSIDIAN_SOURCE_DIR}/src/likelihood/blob.cpp
@@ -39,7 +39,7 @@ IF(CMAKE_BUILD_TYPE MATCHES Release)
                         ${Boost_SYSTEM_LIBRARY}
                         ${Boost_PROGRAM_OPTIONS_LIBRARY}
                         ${NLOPT_LIBRARIES}
-                        z)
+                        ${STATELINE_LIBRARIES} )
 
 ELSE(CMAKE_BUILD_TYPE MATCHES Release)
 
@@ -48,8 +48,13 @@ ELSE(CMAKE_BUILD_TYPE MATCHES Release)
   ############################################################################
   ADD_EXECUTABLE(obsidian obsidian.cpp ${PROTO_SRC})
   TARGET_LINK_LIBRARIES(obsidian ${obsidianAlgoLibraries}
-                                 ${obsidianServerLibraries}
-                                 ${obsidianBaseLibraries})
+                                 #${obsidianServerLibraries}
+                                 ${obsidianBaseLibraries}
+                                input
+                                  lh
+                                  distrib
+                                  io
+                                  )
 
 ENDIF(CMAKE_BUILD_TYPE MATCHES Release)
 

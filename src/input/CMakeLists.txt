@@ -6,7 +6,6 @@
 # Date: 2014 
 
 ADD_LIBRARY(input input.cpp
-                  mcmc.cpp
                   global.cpp
                   world.cpp
                   gravity.cpp

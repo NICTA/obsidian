@@ -10,7 +10,7 @@
 # The following are set after configuration is done: 
 #  STATELINE_FOUND
 #  STATELINE_INCLUDE_DIR
-#  STATELINE_LIBRARY
+#  STATELINE_LIBRARIES
 
 include(FindPackageHandleStandardArgs)
 
@@ -29,7 +29,24 @@ find_path(STATELINE_INCLUDE_DIR stateline/app/workerwrapper.hpp
   /opt
 )
 
-FIND_LIBRARY(STATELINE_LIBRARY statelineclient
+FIND_LIBRARY(STATELINE_CLIENT_LIBRARY
+  NAMES statelineclient
+  HINTS
+  ${STATELINE_ROOT_DIR}
+  PATH_SUFFIXES lib64 lib
+  PATHS
+  ~/Library/Frameworks
+  /Library/Frameworks
+  /usr/local
+  /usr
+  /sw
+  /opt/local
+  /opt/csw
+  /opt
+  )
+
+FIND_LIBRARY(STATELINE_SERVER_LIBRARY
+  NAMES statelineserver
   HINTS
   ${STATELINE_ROOT_DIR}
   PATH_SUFFIXES lib64 lib
@@ -45,13 +62,12 @@ FIND_LIBRARY(STATELINE_LIBRARY statelineclient
   )
 
 find_package_handle_standard_args(STATELINE DEFAULT_MSG
-                                  STATELINE_INCLUDE_DIR STATELINE_LIBRARY)
-                                
+                                  STATELINE_INCLUDE_DIR
+                                  STATELINE_CLIENT_LIBRARY
+                                  STATELINE_SERVER_LIBRARY)
 
-MARK_AS_ADVANCED(STATELINE_INCLUDE_DIR STATELINE_LIBRARY)
+if(STATELINE_FOUND)
+    set(STATELINE_LIBRARIES ${STATELINE_SERVER_LIBRARY} ${STATELINE_CLIENT_LIBRARY})
+endif()
 
-# if(STATELINE_FOUND)
-    # set(STATELINE_INCLUDE_DIR ${STATELINE_INCLUDE_DIR})
-    # set(STATELINE_LIBRARIES ${STATELINE_LIBRARY})
-# endif()
-
+#MARK_AS_ADVANCED(STATELINE_INCLUDE_DIR STATELINE_CLIENT_LIBRARY STATELINE_SERVER_LIBRARY STATELINE_LIBRARIES)

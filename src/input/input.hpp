@@ -19,7 +19,7 @@
 #include "datatype/datatypes.hpp"
 #include "prior/prior.hpp"
 #include "datatype/sensors.hpp"
-#include "app/settings.hpp"
+//#include "app/settings.hpp"
 #include "serial/serial.hpp"
 #include "fwdmodel/fwd.hpp"
 
@@ -46,7 +46,7 @@ namespace obsidian
 
   //! Parse mcmc settings from loaded input.obsidian file
   //!
-  stateline::MCMCSettings parseMCMCSettings(const po::variables_map& vm);
+  //stateline::MCMCSettings parseMCMCSettings(const po::variables_map& vm);
 
   //! Parse which sensors are enabled from loaded input.obsidian file
   //!

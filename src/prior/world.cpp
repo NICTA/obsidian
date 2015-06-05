@@ -160,8 +160,8 @@ namespace obsidian
       std::vector<bool> uniformFlags;
       for (auto i : classes)
         uniformFlags.push_back(i == BoundaryClass::Warped);
-      WorldParams theta = { distrib::drawVectorFrom(propertyPrior, gen, propMins, propMaxs), distrib::drawFrom(ctrlptPrior, gen, ctrlptMins,
-                                                                                                               ctrlptMaxs, uniformFlags) };
+      WorldParams theta = { distrib::drawVectorFrom(propertyPrior, gen, propMins, propMaxs),
+                            distrib::drawFrom(ctrlptPrior, gen, ctrlptMins, ctrlptMaxs, uniformFlags) };
       return deconstruct(theta);
     }
 
