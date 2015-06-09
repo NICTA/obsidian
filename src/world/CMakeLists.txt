@@ -13,10 +13,10 @@ ADD_LIBRARY(world grid.cpp
                   transitions.cpp
                   voxelise.cpp)
 
-ADD_EXECUTABLE(test-world testworld.cpp)
-TARGET_LINK_LIBRARIES(test-world world ${obsidianBaseLibraries})
-REGISTER_UNIT_TESTS(test-world)
+#ADD_EXECUTABLE(test-world testworld.cpp)
+#TARGET_LINK_LIBRARIES(test-world world ${obsidianBaseLibraries})
+#REGISTER_UNIT_TESTS(test-world)
 
-ADD_EXECUTABLE(test-boundaries-are-times testboundariesaretimes.cpp)
-TARGET_LINK_LIBRARIES(test-boundaries-are-times ${obsidianAlgoLibraries} ${obsidianBaseLibraries})
-REGISTER_UNIT_TESTS(test-boundaries-are-times)
+#ADD_EXECUTABLE(test-boundaries-are-times testboundariesaretimes.cpp)
+#TARGET_LINK_LIBRARIES(test-boundaries-are-times ${obsidianAlgoLibraries} ${obsidianBaseLibraries})
+#REGISTER_UNIT_TESTS(test-boundaries-are-times)
