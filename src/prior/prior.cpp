@@ -15,7 +15,7 @@ namespace obsidian
 //  {
 //  }
 
-  GlobalParams GlobalPrior::reconstruct(const Eigen::VectorXd& theta)
+  GlobalParams GlobalPrior::reconstruct(const Eigen::VectorXd& theta) const
   {
     GlobalParams g;
     uint start = 0;

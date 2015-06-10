@@ -76,7 +76,6 @@ json initConfig(const po::variables_map& vm)
   return config;
 }
 
-
 int main(int ac, char* av[])
 {
   std::random_device rd;

@@ -13,7 +13,7 @@ namespace obsidian
     }
 
     // get the number of partition elements
-    uint WorldParamsPrior::size()
+    uint WorldParamsPrior::size() const
     {
       // Just get the size of the objects
       uint size = 0;
@@ -104,7 +104,7 @@ namespace obsidian
     }
 
     // build a WorldParams object from a flat vector
-    WorldParams WorldParamsPrior::reconstruct(const Eigen::VectorXd & theta)
+    WorldParams WorldParamsPrior::reconstruct(const Eigen::VectorXd & theta) const
     {
       uint nLayers = propertyPrior.size();
       CHECK_EQ(ctrlptPrior.size(), nLayers);

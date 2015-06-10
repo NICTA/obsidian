@@ -15,7 +15,7 @@ IF(CMAKE_BUILD_TYPE MATCHES Release)
   ############################################################################
   # Obsidian Release
   ############################################################################
-  ADD_EXECUTABLE (obsidian obsidian.cpp
+  ADD_EXECUTABLE (obsidian-server obsidian-server.cpp
                            #${OBSIDIAN_SOURCE_DIR}/src/app/blob.cpp
                            #${OBSIDIAN_SOURCE_DIR}/src/comms/blob.cpp
                            #${OBSIDIAN_SOURCE_DIR}/src/db/blob.cpp
@@ -29,7 +29,7 @@ IF(CMAKE_BUILD_TYPE MATCHES Release)
                            ${OBSIDIAN_SOURCE_DIR}/src/serial/blob.cpp
                            ${OBSIDIAN_SOURCE_DIR}/src/world/blob.cpp)
 
-  TARGET_LINK_LIBRARIES(obsidian
+  TARGET_LINK_LIBRARIES(obsidian-server
                         protobuf
                         ${LEVELDB_LIBRARY}
                         ${PROTOBUF_LIBRARIES}
@@ -41,13 +41,40 @@ IF(CMAKE_BUILD_TYPE MATCHES Release)
                         ${NLOPT_LIBRARIES}
                         ${STATELINE_LIBRARIES} )
 
+  ADD_EXECUTABLE (obsidian-worker obsidian-worker.cpp
+                           #${OBSIDIAN_SOURCE_DIR}/src/app/blob.cpp
+                           #${OBSIDIAN_SOURCE_DIR}/src/comms/blob.cpp
+                           #${OBSIDIAN_SOURCE_DIR}/src/db/blob.cpp
+                           #${OBSIDIAN_SOURCE_DIR}/src/distrib/blob.cpp
+                           ${OBSIDIAN_SOURCE_DIR}/src/fwdmodel/blob.cpp
+                           #${OBSIDIAN_SOURCE_DIR}/src/infer/blob.cpp
+                           ${OBSIDIAN_SOURCE_DIR}/src/input/blob.cpp
+                           ${OBSIDIAN_SOURCE_DIR}/src/io/blob.cpp
+                           ${OBSIDIAN_SOURCE_DIR}/src/likelihood/blob.cpp
+                           ${OBSIDIAN_SOURCE_DIR}/src/prior/blob.cpp
+                           ${OBSIDIAN_SOURCE_DIR}/src/serial/blob.cpp
+                           ${OBSIDIAN_SOURCE_DIR}/src/world/blob.cpp)
+
+  TARGET_LINK_LIBRARIES(obsidian-worker
+                        protobuf
+                        ${LEVELDB_LIBRARY}
+                        ${PROTOBUF_LIBRARIES}
+                        ${ZMQ_LIBRARY}
+                        ${GLOG_LIBRARY}
+                        ${Boost_FILESYSTEM_LIBRARY}
+                        ${Boost_SYSTEM_LIBRARY}
+                        ${Boost_PROGRAM_OPTIONS_LIBRARY}
+                        ${NLOPT_LIBRARIES}
+                        ${STATELINE_LIBRARIES} )
+
+
 ELSE(CMAKE_BUILD_TYPE MATCHES Release)
 
   ############################################################################
   # Obsidian Debug
   ############################################################################
-  ADD_EXECUTABLE(obsidian obsidian.cpp ${PROTO_SRC})
-  TARGET_LINK_LIBRARIES(obsidian ${obsidianAlgoLibraries}
+  ADD_EXECUTABLE(obsidian-server obsidian-server.cpp ${PROTO_SRC})
+  TARGET_LINK_LIBRARIES(obsidian-server ${obsidianAlgoLibraries}
                                  #${obsidianServerLibraries}
                                  ${obsidianBaseLibraries}
                                 input
@@ -55,10 +82,19 @@ ELSE(CMAKE_BUILD_TYPE MATCHES Release)
                                   distrib
                                   io
                                   )
-
+  ADD_EXECUTABLE(obsidian-worker obsidian-worker.cpp ${PROTO_SRC})
+  TARGET_LINK_LIBRARIES(obsidian-worker ${obsidianAlgoLibraries}
+                                 #${obsidianServerLibraries}
+                                 ${obsidianBaseLibraries}
+                                input
+                                  lh
+                                  distrib
+                                  io
+                                  )
 ENDIF(CMAKE_BUILD_TYPE MATCHES Release)
 
-SET_TARGET_PROPERTIES (obsidian PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${OBSIDIAN_BINARY_DIR})
+SET_TARGET_PROPERTIES (obsidian-server PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${OBSIDIAN_BINARY_DIR})
+SET_TARGET_PROPERTIES (obsidian-worker PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${OBSIDIAN_BINARY_DIR})
 
 # Macro for adding demos
 FUNCTION (ADD_DEMO demoName)

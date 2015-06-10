@@ -88,7 +88,7 @@ namespace obsidian
       Eigen::VectorXd thetaMaxBound();
 
       // build a WorldParams object from a flat vector
-      WorldParams reconstruct(const Eigen::VectorXd& theta);
+      WorldParams reconstruct(const Eigen::VectorXd& theta) const;
 
       // Evaluate log likelihood of theta under this prior
       double evaluatePDF(const Eigen::VectorXd& theta);
@@ -97,7 +97,7 @@ namespace obsidian
       Eigen::VectorXd sample(std::mt19937 &gen);
 
       // Method to compute the size of the prior
-      uint size();
+      uint size() const;
 
       // turn a WorldParams object into a flat vector
       Eigen::VectorXd deconstruct(const WorldParams& params);

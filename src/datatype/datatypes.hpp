@@ -95,4 +95,65 @@ namespace obsidian
     return g.therm;
   }
 
+
+  //! For accessing subfields of global results.
+  //!
+  template<typename T, typename R> const R & globalResult(const T&);
+
+  template<> inline const GravResults & globalResult<GlobalResults, GravResults>(const GlobalResults&g)
+  {
+    return g.grav;
+  }
+  template<> inline const MagResults & globalResult<GlobalResults, MagResults>(const GlobalResults&g)
+  {
+    return g.mag;
+  }
+  template<> inline const MtAnisoResults & globalResult<GlobalResults, MtAnisoResults>(const GlobalResults&g)
+  {
+    return g.mt;
+  }
+  template<> inline const Seismic1dResults & globalResult<GlobalResults, Seismic1dResults>(const GlobalResults&g)
+  {
+    return g.s1d;
+  }
+  template<> inline const ContactPointResults & globalResult<GlobalResults, ContactPointResults>(const GlobalResults&g)
+  {
+    return g.cpoint;
+  }
+  template<> inline const ThermalResults & globalResult<GlobalResults, ThermalResults>(const GlobalResults&g)
+  {
+    return g.therm;
+  }
+
+
+  //! For accessing subfields of global.
+  //!
+  template<typename T, typename R> const R & globalSpec(const T&);
+
+  template<> inline const GravSpec & globalSpec<GlobalSpec, GravSpec>(const GlobalSpec&g)
+  {
+    return g.grav;
+  }
+  template<> inline const MagSpec & globalSpec<GlobalSpec, MagSpec>(const GlobalSpec&g)
+  {
+    return g.mag;
+  }
+  template<> inline const MtAnisoSpec & globalSpec<GlobalSpec, MtAnisoSpec>(const GlobalSpec&g)
+  {
+    return g.mt;
+  }
+  template<> inline const Seismic1dSpec & globalSpec<GlobalSpec, Seismic1dSpec>(const GlobalSpec&g)
+  {
+    return g.s1d;
+  }
+  template<> inline const ContactPointSpec & globalSpec<GlobalSpec, ContactPointSpec>(const GlobalSpec&g)
+  {
+    return g.cpoint;
+  }
+  template<> inline const ThermalSpec & globalSpec<GlobalSpec, ThermalSpec>(const GlobalSpec&g)
+  {
+    return g.therm;
+  }
+
+
 } // namespace obsidian
