@@ -11,6 +11,7 @@
 //!
 
 //Stateline
+#include <stateline/app/logging.hpp>
 #include <stateline/app/serverwrapper.hpp>
 #include <stateline/app/signal.hpp>
 #include <stateline/app/commandline.hpp>
@@ -62,6 +63,9 @@ int main(int ac, char* av[])
 {
   // Get the settings from the command line
   auto vm = sl::parseCommandLine(ac, av, commandLineOptions());
+
+  int logLevel = vm["loglevel"].as<int>();
+  sl::initLogging("obsidian-server", logLevel);
 
   // Server
   json config = initConfig(vm);

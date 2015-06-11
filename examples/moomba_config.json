@@ -6,7 +6,9 @@
   },
   "duration": 20,
   "sigma": 1.0,
-  "jobTypes": ["gravity","magnetism"],
+  "xjobTypes": ["prior","gravity","magnetism","mtaniso","seismic1d","contactpoint","thermal"],
+  "yjobTypes": ["prior","gravity","magnetism","mtaniso","thermal"],
+  "jobTypes": ["gravity"],
   "sigmaAdaption": {
     "windowSize": 100000,
     "adaptionLength": 100000,

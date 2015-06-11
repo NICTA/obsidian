@@ -59,12 +59,11 @@ bool forwardModelWorker( const GlobalSpec& gSpec,
   sl::LikelihoodFn lhFn = [&](const std::string& jobType,
                               const std::vector<double>& sample) -> double
   {
-    LOG(INFO) << "Received job type: " << jobType;
     Eigen::Map<const Eigen::VectorXd> theta(sample.data(),sample.size());
     const GlobalParams gParams = gPrior.reconstruct(theta);
     typename Types<f>::Results synthetic = fwd::forwardModel<f>(spec, cache, gParams.world);
     synthetic.likelihood = lh::likelihood<f>(synthetic, results, spec);
-    LOG(INFO) << "Evaluated " << f << " likelihhood function: " << synthetic.likelihood;
+    LOG(INFO) << "Evaluated " << f << " likelihhood function (" << jobType << "): " << synthetic.likelihood;
     return synthetic.likelihood;
   };
 
@@ -76,7 +75,7 @@ bool forwardModelWorker( const GlobalSpec& gSpec,
 
   w.start();
 
-  while(!sl::global::interruptedBySignal && w.isRunning() )
+  while(!sl::global::interruptedBySignal)
   {
     std::this_thread::sleep_for(std::chrono::milliseconds(500));
   }

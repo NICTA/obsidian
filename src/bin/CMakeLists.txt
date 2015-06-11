@@ -41,7 +41,7 @@ IF(CMAKE_BUILD_TYPE MATCHES Release)
                         ${NLOPT_LIBRARIES}
                         ${STATELINE_LIBRARIES} )
 
-  ADD_EXECUTABLE (obsidian-worker obsidian-worker.cpp
+  ADD_EXECUTABLE (obsidian-client obsidian-client.cpp
                            #${OBSIDIAN_SOURCE_DIR}/src/app/blob.cpp
                            #${OBSIDIAN_SOURCE_DIR}/src/comms/blob.cpp
                            #${OBSIDIAN_SOURCE_DIR}/src/db/blob.cpp
@@ -55,7 +55,7 @@ IF(CMAKE_BUILD_TYPE MATCHES Release)
                            ${OBSIDIAN_SOURCE_DIR}/src/serial/blob.cpp
                            ${OBSIDIAN_SOURCE_DIR}/src/world/blob.cpp)
 
-  TARGET_LINK_LIBRARIES(obsidian-worker
+  TARGET_LINK_LIBRARIES(obsidian-client
                         protobuf
                         ${LEVELDB_LIBRARY}
                         ${PROTOBUF_LIBRARIES}
@@ -66,7 +66,6 @@ IF(CMAKE_BUILD_TYPE MATCHES Release)
                         ${Boost_PROGRAM_OPTIONS_LIBRARY}
                         ${NLOPT_LIBRARIES}
                         ${STATELINE_LIBRARIES} )
-
 
 ELSE(CMAKE_BUILD_TYPE MATCHES Release)
 
@@ -82,6 +81,16 @@ ELSE(CMAKE_BUILD_TYPE MATCHES Release)
                                   distrib
                                   io
                                   )
+  ADD_EXECUTABLE(obsidian-client obsidian-client.cpp obsidianworker.cpp ${PROTO_SRC})
+  TARGET_LINK_LIBRARIES(obsidian-client ${obsidianAlgoLibraries}
+                                 #${obsidianServerLibraries}
+                                 ${obsidianBaseLibraries}
+                                input
+                                  lh
+                                  distrib
+                                  io
+                                  )
+
   ADD_EXECUTABLE(obsidian-worker obsidian-worker.cpp ${PROTO_SRC})
   TARGET_LINK_LIBRARIES(obsidian-worker ${obsidianAlgoLibraries}
                                  #${obsidianServerLibraries}
@@ -91,9 +100,11 @@ ELSE(CMAKE_BUILD_TYPE MATCHES Release)
                                   distrib
                                   io
                                   )
+
 ENDIF(CMAKE_BUILD_TYPE MATCHES Release)
 
 SET_TARGET_PROPERTIES (obsidian-server PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${OBSIDIAN_BINARY_DIR})
+SET_TARGET_PROPERTIES (obsidian-client PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${OBSIDIAN_BINARY_DIR})
 SET_TARGET_PROPERTIES (obsidian-worker PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${OBSIDIAN_BINARY_DIR})
 
 # Macro for adding demos
