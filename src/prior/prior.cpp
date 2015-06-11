@@ -24,7 +24,7 @@ namespace obsidian
     return g;
   }
 
-  double GlobalPrior::evaluate(const Eigen::VectorXd& theta)
+  double GlobalPrior::evaluate(const Eigen::VectorXd& theta) const
   {
     double logPDF = 0;
     uint start = 0;

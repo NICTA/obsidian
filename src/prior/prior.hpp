@@ -43,7 +43,7 @@ namespace obsidian
 //                  const std::vector<Eigen::VectorXi>& propMasks);
 
     GlobalParams reconstruct(const Eigen::VectorXd& theta) const;
-    double evaluate(const Eigen::VectorXd& theta);
+    double evaluate(const Eigen::VectorXd& theta) const;
     Eigen::VectorXd sample(std::mt19937 &gen);
 
     uint size();

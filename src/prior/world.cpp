@@ -166,9 +166,8 @@ namespace obsidian
     }
 
     // Evaluate log likelihood of theta under this prior
-    double WorldParamsPrior::evaluatePDF(const Eigen::VectorXd& theta)
+    double WorldParamsPrior::evaluatePDF(const Eigen::VectorXd& theta) const
     {
-
       uint nLayers = propertyPrior.size();
       CHECK_EQ(ctrlptPrior.size(), nLayers);
       // Rebuild the vector into an object

@@ -19,7 +19,7 @@ namespace obsidian
 {
   enum class ForwardModel
   {
-    GRAVITY, MAGNETICS, MTANISO, SEISMIC1D, CONTACTPOINT, THERMAL, Count
+    PRIOR, GRAVITY, MAGNETICS, MTANISO, SEISMIC1D, CONTACTPOINT, THERMAL, Count
   };
 
   template<ForwardModel f>

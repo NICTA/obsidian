@@ -54,6 +54,14 @@ namespace obsidian
   inline std::vector<uint> jobTypesToValues(std::vector<std::string> jobTypes)
   {
     std::vector<uint> jobList;
+
+    auto it = std::find(std::begin(jobTypes),std::end(jobTypes),"prior");
+    if ( it != jobTypes.end() )
+    {
+      jobList.push_back( static_cast<uint>(ForwardModel::PRIOR) );
+      jobTypes.erase(it);
+    }
+
     applyToSensors<helperJobTypesToValues>(std::ref(jobList), std::ref(jobTypes));
     if (jobTypes.size() > 0)
     {

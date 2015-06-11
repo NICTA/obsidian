@@ -91,7 +91,7 @@ namespace obsidian
       WorldParams reconstruct(const Eigen::VectorXd& theta) const;
 
       // Evaluate log likelihood of theta under this prior
-      double evaluatePDF(const Eigen::VectorXd& theta);
+      double evaluatePDF(const Eigen::VectorXd& theta) const;
 
       // randomly sample a valid set of parameters
       Eigen::VectorXd sample(std::mt19937 &gen);

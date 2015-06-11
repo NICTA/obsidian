@@ -37,8 +37,8 @@ po::options_description commandLineOptions()
     ("loglevel,l",  po::value<int>()->default_value(0), "Logging level")
     ("nthreads,t",  po::value<uint>()->default_value(1), "Number of worker threads")
     ("address,a",   po::value<std::string>()->default_value("localhost:5555"), "Address of server")
-    ("inputfile,i", po::value<std::string>()->default_value("input.obsidian"), "input file")
-    ("jobtypes,j", po::value<std::string>()->default_value("gravity,magnetism,mtaniso"), "Comma-separated job types")
+    ("input,i",     po::value<std::string>()->default_value("input.obsidian"), "Input file")
+    ("jobtypes,j",  po::value<std::string>()->default_value("gravity"), "Comma-separated job types")
     ;
   return opts;
 }
@@ -59,11 +59,12 @@ bool forwardModelWorker( const GlobalSpec& gSpec,
   sl::LikelihoodFn lhFn = [&](const std::string& jobType,
                               const std::vector<double>& sample) -> double
   {
+    LOG(INFO) << "Received job type: " << jobType;
     Eigen::Map<const Eigen::VectorXd> theta(sample.data(),sample.size());
     const GlobalParams gParams = gPrior.reconstruct(theta);
     typename Types<f>::Results synthetic = fwd::forwardModel<f>(spec, cache, gParams.world);
     synthetic.likelihood = lh::likelihood<f>(synthetic, results, spec);
-    LOG_EVERY_N(INFO,10) << "Evaluated " << f << " likelihhood function: " << synthetic.likelihood;
+    LOG(INFO) << "Evaluated " << f << " likelihhood function: " << synthetic.likelihood;
     return synthetic.likelihood;
   };
 
@@ -75,10 +76,46 @@ bool forwardModelWorker( const GlobalSpec& gSpec,
 
   w.start();
 
-  while(!sl::global::interruptedBySignal)
+  while(!sl::global::interruptedBySignal && w.isRunning() )
   {
     std::this_thread::sleep_for(std::chrono::milliseconds(500));
   }
+
+  LOG(INFO) << "Stopping forwardModelWorker for " << f;
+
+  w.stop();
+
+  return true;
+}
+
+bool priorWorker( const GlobalPrior& gPrior,
+                  const po::variables_map &vm )
+{
+  LOG(INFO) << "Creating prior model";
+
+  sl::LikelihoodFn lhFn = [&](const std::string& jobType,
+                              const std::vector<double>& sample) -> double
+  {
+    LOG(INFO) << "Received job type: " << jobType;
+    Eigen::Map<const Eigen::VectorXd> theta(sample.data(),sample.size());
+    auto p = gPrior.evaluate(theta);
+    LOG(INFO) << "Evaluated Prior: " << p;
+    return p;
+  };
+
+  const std::vector<std::string> jobTypes { "prior" };
+  const uint nThreads = vm["nthreads"].as<uint>();
+  const std::string address = vm["address"].as<std::string>();
+
+  sl::WorkerWrapper w(lhFn, address, jobTypes, nThreads);
+
+  w.start();
+
+  while(!sl::global::interruptedBySignal){
+    std::this_thread::sleep_for(std::chrono::milliseconds(500));
+  }
+
+  LOG(INFO) << "Stopping prior model";
 
   w.stop();
 
@@ -105,8 +142,28 @@ struct launchWorkerThread
 };
 
 
+template<ForwardModel f>
+struct validateSensorData
+{
+  validateSensorData(const GlobalSpec& gSpec, const GlobalResults& gResults)
+  {
+    const WorldSpec wSpec = gSpec.world;
+    const typename Types<f>::Spec& spec        = globalSpec<GlobalSpec,typename Types<f>::Spec>(gSpec);
+    const typename Types<f>::Results& results  = globalResult<GlobalResults, typename Types<f>::Results>(gResults);
+
+    if ( !validateSensor(wSpec, spec, results) )
+    {
+      LOG(ERROR) << "Could note validate " << f << " data";
+      exit(EXIT_FAILURE);
+    }
+  }
+};
+
+
 int main(int ac, char *av[])
 {
+  LOG(INFO)<< "Running obsidian-worker";
+
   auto vm = sl::parseCommandLine(ac, av, commandLineOptions());
 
   int logLevel = vm["loglevel"].as<int>();
@@ -114,7 +171,7 @@ int main(int ac, char *av[])
 
   sl::init::initialiseSignalHandler();
 
-  readInputFile(vm["inputfile"].as<std::string>(), vm);
+  readInputFile(vm["input"].as<std::string>(), vm);
 
   const std::set<ForwardModel> sensorsEnabled = parseSensorsEnabled(vm);
   const GlobalSpec gSpec = parseSpec<GlobalSpec>(vm, sensorsEnabled);
@@ -128,27 +185,33 @@ int main(int ac, char *av[])
     enabled.insert(static_cast<ForwardModel>(i));
   }
 
-  std::vector< std::future<bool> > threads;
-  applyToSensorsEnabled<launchWorkerThread>(enabled, std::ref(threads),
-                                            std::cref(gSpec), std::cref(gPrior), std::cref(gResults),
-                                            std::cref(interp), std::cref(vm));
-  /*
-  threads.push_back( std::async( std::launch::async, forwardModelWorker<ForwardModel::GRAVITY>,
-                                 std::ref(gSpec), std::ref(gPrior), std::ref(gResults),
-                                 std::ref(interp), std::cref(vm)
-                     )
-  );
-  */
+  // validate
+  LOG(INFO)<< "Validating data";
+  applyToSensorsEnabled<validateSensorData>( enabled, std::cref(gSpec), std::cref(gResults) );
 
-  while(!sl::global::interruptedBySignal)
-  {
+  // start forward-model workers
+  LOG(INFO)<< "Starting all worker threads";
+  std::vector< std::future<bool> > threads;
+
+  // Start prior worker thread
+  threads.push_back(std::async(std::launch::async, priorWorker,
+                               std::cref(gPrior), std::cref(vm) ) );
+
+  // start all forward model worker threads
+  applyToSensorsEnabled<launchWorkerThread>( enabled, std::ref(threads),
+                                             std::cref(gSpec), std::cref(gPrior), std::cref(gResults),
+                                             std::cref(interp), std::cref(vm) );
+
+  while(!sl::global::interruptedBySignal) {
     std::this_thread::sleep_for(std::chrono::milliseconds(500));
   }
 
-  for (auto& t : threads)
-  {
+  LOG(INFO)<< "Obsidian worker stopped: waiting for all threads";
+
+  for (auto& t : threads) {
     t.wait();
   }
 
+  LOG(INFO)<< "Obsidian worker exit";
   return 0;
 }
