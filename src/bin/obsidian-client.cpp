@@ -76,7 +76,6 @@ int main(int ac, char *av[])
 
   const std::set<ForwardModel> sensorsEnabled = parseSensorsEnabled(vm);
   const GlobalSpec gSpec = parseSpec<GlobalSpec>(vm, sensorsEnabled);
-  const std::vector<world::InterpolatorSpec> interp = world::worldspec2Interp(gSpec.world);
   const GlobalPrior gPrior = parsePrior<GlobalPrior>(vm, sensorsEnabled);
   const GlobalResults gResults = loadResults(gSpec.world, vm, sensorsEnabled);
 

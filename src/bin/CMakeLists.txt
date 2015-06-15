@@ -5,11 +5,6 @@
 # Authors: Lachlan McCalman
 # Date: 2014 
 
-SET ( shardSources
-  shard.cpp)
-
-SET ( obsidianSources obsidian.cpp )
-
 IF(CMAKE_BUILD_TYPE MATCHES Release)
 
   ############################################################################
@@ -74,38 +69,24 @@ ELSE(CMAKE_BUILD_TYPE MATCHES Release)
   ############################################################################
   ADD_EXECUTABLE(obsidian-server obsidian-server.cpp ${PROTO_SRC})
   TARGET_LINK_LIBRARIES(obsidian-server ${obsidianAlgoLibraries}
-                                 #${obsidianServerLibraries}
-                                 ${obsidianBaseLibraries}
-                                input
-                                  lh
-                                  distrib
-                                  io
-                                  )
+                                        ${obsidianBaseLibraries}
+                                        input lh distrib io )
+
   ADD_EXECUTABLE(obsidian-client obsidian-client.cpp obsidianworker.cpp ${PROTO_SRC})
   TARGET_LINK_LIBRARIES(obsidian-client ${obsidianAlgoLibraries}
-                                 #${obsidianServerLibraries}
-                                 ${obsidianBaseLibraries}
-                                input
-                                  lh
-                                  distrib
-                                  io
-                                  )
+                                        ${obsidianBaseLibraries}
+                                        input lh distrib io )
 
   ADD_EXECUTABLE(obsidian-worker obsidian-worker.cpp ${PROTO_SRC})
   TARGET_LINK_LIBRARIES(obsidian-worker ${obsidianAlgoLibraries}
-                                 #${obsidianServerLibraries}
-                                 ${obsidianBaseLibraries}
-                                input
-                                  lh
-                                  distrib
-                                  io
-                                  )
+                                        ${obsidianBaseLibraries}
+                                        input lh distrib io )
 
 ENDIF(CMAKE_BUILD_TYPE MATCHES Release)
 
-SET_TARGET_PROPERTIES (obsidian-server PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${OBSIDIAN_BINARY_DIR})
-SET_TARGET_PROPERTIES (obsidian-client PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${OBSIDIAN_BINARY_DIR})
-SET_TARGET_PROPERTIES (obsidian-worker PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${OBSIDIAN_BINARY_DIR})
+SET_TARGET_PROPERTIES(obsidian-server PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${OBSIDIAN_BINARY_DIR})
+SET_TARGET_PROPERTIES(obsidian-client PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${OBSIDIAN_BINARY_DIR})
+SET_TARGET_PROPERTIES(obsidian-worker PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${OBSIDIAN_BINARY_DIR})
 
 # Macro for adding demos
 FUNCTION (ADD_DEMO demoName)

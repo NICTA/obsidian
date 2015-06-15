@@ -237,7 +237,7 @@ MACRO ( ADD_SUBPROJECT directory )
 ENDMACRO ( ADD_SUBPROJECT directory )
 
 ADD_SUBPROJECT(src/test)
-#ADD_SUBPROJECT(src/app)
+ADD_SUBPROJECT(src/app)
 ADD_SUBPROJECT(src/serial)
 ADD_SUBPROJECT(src/prior)
 ADD_SUBPROJECT(src/world)

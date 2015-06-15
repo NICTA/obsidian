@@ -10,4 +10,4 @@ ADD_LIBRARY(io cnpy/cnpy.cpp
                string.cpp
                csv.cpp)
 
-TARGET_LINK_LIBRARIES(io z)
+#TARGET_LINK_LIBRARIES(io z)
