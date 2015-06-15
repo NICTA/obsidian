@@ -8,21 +8,21 @@
  * @copyright (c) 2014, NICTA
  */
 
-#include "test/thermal.hpp"
+#include "test/contactpoint.hpp"
 #include "test/input.hpp"
-#include "input.hpp"
+#include "input/input.hpp"
 
 namespace obsidian
 {
 
 TEST_F(InputTest, testSpec)
 {
-  generateVariations<ThermalSpec>(testSpecCSV<ForwardModel::THERMAL>);
+  generateVariations<ContactPointSpec>(testSpecCSV<ForwardModel::CONTACTPOINT>);
 }
 
 TEST_F(InputTest, testResult)
 {
-  generateVariations<ThermalResults>(testResultsCSV<ForwardModel::THERMAL>);
+  generateVariations<ContactPointResults>(testResultsCSV<ForwardModel::CONTACTPOINT>);
 }
 
 }

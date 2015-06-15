@@ -10,7 +10,7 @@
 
 #include "test/world.hpp"
 #include "test/input.hpp"
-#include "input.hpp"
+#include "input/input.hpp"
 #include <functional>
 
 namespace obsidian

@@ -12,7 +12,7 @@
 #include <gtest/gtest.h>
 #include <cmath>
 
-#include "gravity.hpp"
+#include "fwdmodel/gravity.hpp"
 
 using namespace obsidian;
 using namespace fwd;

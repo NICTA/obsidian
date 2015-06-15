@@ -1,28 +1,28 @@
 /**
  * Contains the basic GDF datatypes for communication between forward models.
  *
- * @file testcontactpoint.hpp
+ * @file testseismic.hpp
  * @author Nahid Akbar
  * @date 2014
  * @license General Public License version 3 or later.
  * @copyright (c) 2014, NICTA
  */
 
-#include "test/gravity.hpp"
 #include "test/input.hpp"
-#include "input.hpp"
+#include "input/input.hpp"
+#include "test/mt.hpp"
 
 namespace obsidian
 {
 
 TEST_F(InputTest, testSpec)
 {
-  generateVariations<GravSpec>(testSpecCSV<ForwardModel::GRAVITY>);
+  generateVariations<MtAnisoSpec>(testSpecCSV<ForwardModel::MTANISO>);
 }
 
 TEST_F(InputTest, testResult)
 {
-  generateVariations<GravResults>(testResultsCSV<ForwardModel::GRAVITY>);
+  generateVariations<MtAnisoResults>(testResultsCSV<ForwardModel::MTANISO>);
 }
 
 }

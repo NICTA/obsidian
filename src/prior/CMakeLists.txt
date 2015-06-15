@@ -8,15 +8,6 @@
 ADD_LIBRARY(prior  prior.cpp
                    world.cpp)
 
-ADD_EXECUTABLE ( test-prior  "testprior.cpp")
 
-TARGET_LINK_LIBRARIES ( test-prior
-  console
-  world
-  prior
-distrib
-  ${GLOG_LIBRARY}
-  ${Boost_LIBRARIES}
-  gtest)
+ADD_SUBDIRECTORY(test)
 
-REGISTER_UNIT_TESTS( test-prior)

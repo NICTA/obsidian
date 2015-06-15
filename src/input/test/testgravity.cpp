@@ -8,21 +8,21 @@
  * @copyright (c) 2014, NICTA
  */
 
-#include "test/contactpoint.hpp"
+#include "test/gravity.hpp"
 #include "test/input.hpp"
-#include "input.hpp"
+#include "input/input.hpp"
 
 namespace obsidian
 {
 
 TEST_F(InputTest, testSpec)
 {
-  generateVariations<ContactPointSpec>(testSpecCSV<ForwardModel::CONTACTPOINT>);
+  generateVariations<GravSpec>(testSpecCSV<ForwardModel::GRAVITY>);
 }
 
 TEST_F(InputTest, testResult)
 {
-  generateVariations<ContactPointResults>(testResultsCSV<ForwardModel::CONTACTPOINT>);
+  generateVariations<GravResults>(testResultsCSV<ForwardModel::GRAVITY>);
 }
 
 }

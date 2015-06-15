@@ -9,7 +9,7 @@
 //! \copyright (c) 2014, NICTA
 //!
 
-#include "multigaussian.hpp"
+#include "distrib/multigaussian.hpp"
 #include "datatype/datatypes.hpp"
 
 #include <gtest/gtest.h>

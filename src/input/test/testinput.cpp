@@ -8,7 +8,7 @@
  * @license General Public License version 3 or later
  */
 
-#include "input.hpp"
+#include "input/input.hpp"
 #include "datatype/sensors.hpp"
 
 #include <gtest/gtest.h>
