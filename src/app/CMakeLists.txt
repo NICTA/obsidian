@@ -5,8 +5,4 @@
 # Authors: Lachlan McCalman
 # Date: 2014 
 
-#ADD_LIBRARY(settings settings.cpp)
-
 ADD_LIBRARY(console console.cpp)
-
-#ADD_LIBRARY(asyncdelegator asyncdelegator.cpp)

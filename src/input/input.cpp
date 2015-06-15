@@ -40,7 +40,6 @@ namespace obsidian
   {
     po::options_description inputFile("Input File Options");
     initWorldOptions(inputFile);
-    //initMCMCOptions(inputFile);
     applyToSensors<initSensorInputFileOptions_>(std::ref(inputFile));
     return inputFile;
   }

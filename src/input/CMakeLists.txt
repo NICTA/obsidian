@@ -17,14 +17,14 @@ ADD_LIBRARY(input input.cpp
 
 target_link_libraries(input ${Boost_LIBRARIES})
 
-SET(TESTLIBS input distrib ${obsidianAlgoLibraries} ${obsidianBaseLibraries})
+SET(TESTLIBS input distrib io serial fwd-mt ${GLOG_LIBRARY} )
 
 ADD_EXECUTABLE(test-input testinput.cpp)
 TARGET_LINK_LIBRARIES(test-input ${TESTLIBS} )
 REGISTER_UNIT_TESTS(test-input)
 
 ADD_EXECUTABLE(test-input-world testworld.cpp)
-TARGET_LINK_LIBRARIES(test-input-world ${TESTLIBS} )
+TARGET_LINK_LIBRARIES(test-input-world prior ${TESTLIBS} )
 REGISTER_UNIT_TESTS(test-input-world)
 
 ADD_EXECUTABLE(test-input-gravity testgravity.cpp)
@@ -36,7 +36,7 @@ TARGET_LINK_LIBRARIES(test-input-magnetism ${TESTLIBS} )
 REGISTER_UNIT_TESTS(test-input-magnetism)
 
 ADD_EXECUTABLE(test-input-mt testmt.cpp)
-TARGET_LINK_LIBRARIES(test-input-mt ${TESTLIBS} )
+TARGET_LINK_LIBRARIES(test-input-mt fwd-gravmag ${TESTLIBS} )
 REGISTER_UNIT_TESTS(test-input-mt)
 
 ADD_EXECUTABLE(test-input-seismic testseismic.cpp)

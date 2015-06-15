@@ -5,16 +5,16 @@
 # Authors: Lachlan McCalman
 # Date: 2014 
 
-set(PROTOBUF_FILES "serialtypes.proto" "stateline.proto")
+set(PROTOBUF_FILES "serialtypes.proto")
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 PROTOBUF_GENERATE_CPP(PROTO_SRC PROTO_HEADER ${PROTOBUF_FILES})
 
 ADD_LIBRARY(protobuf ${PROTO_SRC}
                      ${PROTO_HEADER})
 
-ADD_LIBRARY(serial   gravity.cpp 
-   magnetic.cpp  mt.cpp  utility.cpp  world.cpp
-   commstypes.cpp seismic.cpp contactpoint.cpp thermal.cpp  mcmc.cpp)
+ADD_LIBRARY(serial gravity.cpp magnetic.cpp  mt.cpp
+                   utility.cpp  world.cpp seismic.cpp
+                   contactpoint.cpp thermal.cpp)
 
 ADD_EXECUTABLE ( test-serial-gravity testgravity.cpp)
 TARGET_LINK_LIBRARIES(test-serial-gravity serial)

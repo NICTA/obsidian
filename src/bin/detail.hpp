@@ -74,28 +74,6 @@ namespace obsidian
     return jobList;
   }
 
-  //! Populates list of job ids, job specs and job readings.
-  //!
-  template<ForwardModel f>
-  struct getData
-  {
-    getData(std::vector<uint> & ids, std::vector<std::string> & specs, std::vector<std::string> & readings, const WorldSpec & worldSpec,
-            GlobalResults & globalResults, const po::variables_map &vm, const std::set<ForwardModel>& sensorsEnabled)
-    {
-      LOG(INFO) << "Initialise " << f << "(" << configHeading<f>() << ") data";
-      ids.push_back(static_cast<uint>(f));
-      typename Types<f>::Spec spec = parseSpec<typename Types<f>::Spec>(vm, sensorsEnabled);
-      specs.push_back(comms::serialise(spec));
-      typename Types<f>::Results results = globalResult<GlobalResults, typename Types<f>::Results>(globalResults);
-      if (!validateSensor(worldSpec, spec, results))
-      {
-        LOG(ERROR) << "Could note validate " << f << " data";
-        exit(EXIT_FAILURE);
-      }
-      readings.push_back(comms::serialise(results));
-    }
-  };
-
   template<ForwardModel f>
   struct getResults
   {

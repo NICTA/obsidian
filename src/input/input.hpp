@@ -19,8 +19,7 @@
 #include "datatype/datatypes.hpp"
 #include "prior/prior.hpp"
 #include "datatype/sensors.hpp"
-//#include "app/settings.hpp"
-#include "serial/serial.hpp"
+
 #include "fwdmodel/fwd.hpp"
 
 namespace po = boost::program_options;
@@ -35,18 +34,10 @@ namespace obsidian
   //!
   void initWorldOptions(po::options_description & options);
 
-  //! Initialise options for mcmc
-  //!
-  void initMCMCOptions(po::options_description & options);
-
   //! Initialise options for a specific forward model to read from input.obsidian or write to output.gdf
   //!
   template<ForwardModel f>
   void initSensorInputFileOptions(po::options_description & add_options);
-
-  //! Parse mcmc settings from loaded input.obsidian file
-  //!
-  //stateline::MCMCSettings parseMCMCSettings(const po::variables_map& vm);
 
   //! Parse which sensors are enabled from loaded input.obsidian file
   //!

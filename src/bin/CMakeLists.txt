@@ -5,84 +5,31 @@
 # Authors: Lachlan McCalman
 # Date: 2014 
 
-IF(CMAKE_BUILD_TYPE MATCHES Release)
+SET(obsidian3rdPartyLibs
+        ${ZMQ_LIBRARY}
+        ${GLOG_LIBRARY}
+        ${LEVELDB_LIBRARY}
+        ${Boost_FILESYSTEM_LIBRARY}
+        ${Boost_SYSTEM_LIBRARY}
+        ${Boost_PROGRAM_OPTIONS_LIBRARY}
+        ${STATELINE_LIBRARIES})
 
-  ############################################################################
-  # Obsidian Release
-  ############################################################################
-  ADD_EXECUTABLE (obsidian-server obsidian-server.cpp
-                           #${OBSIDIAN_SOURCE_DIR}/src/app/blob.cpp
-                           #${OBSIDIAN_SOURCE_DIR}/src/comms/blob.cpp
-                           #${OBSIDIAN_SOURCE_DIR}/src/db/blob.cpp
-                           #${OBSIDIAN_SOURCE_DIR}/src/distrib/blob.cpp
-                           ${OBSIDIAN_SOURCE_DIR}/src/fwdmodel/blob.cpp
-                           #${OBSIDIAN_SOURCE_DIR}/src/infer/blob.cpp
-                           ${OBSIDIAN_SOURCE_DIR}/src/input/blob.cpp
-                           ${OBSIDIAN_SOURCE_DIR}/src/io/blob.cpp
-                           ${OBSIDIAN_SOURCE_DIR}/src/likelihood/blob.cpp
-                           ${OBSIDIAN_SOURCE_DIR}/src/prior/blob.cpp
-                           ${OBSIDIAN_SOURCE_DIR}/src/serial/blob.cpp
-                           ${OBSIDIAN_SOURCE_DIR}/src/world/blob.cpp)
+SET(obsidianLibs
+        input lh distrib io
+        world prior serial
+        fwd-gravmag fwd-mt fwd-seismic
+        fwd-contactpoint fwd-thermal)
 
-  TARGET_LINK_LIBRARIES(obsidian-server
-                        protobuf
-                        ${LEVELDB_LIBRARY}
-                        ${PROTOBUF_LIBRARIES}
-                        ${ZMQ_LIBRARY}
-                        ${GLOG_LIBRARY}
-                        ${Boost_FILESYSTEM_LIBRARY}
-                        ${Boost_SYSTEM_LIBRARY}
-                        ${Boost_PROGRAM_OPTIONS_LIBRARY}
-                        ${NLOPT_LIBRARIES}
-                        ${STATELINE_LIBRARIES} )
+ADD_EXECUTABLE(obsidian-server obsidian-server.cpp ${PROTO_SRC})
+TARGET_LINK_LIBRARIES(obsidian-server ${GLOG_LIBRARY}
+                                      ${Boost_PROGRAM_OPTIONS_LIBRARY}
+                                      ${STATELINE_LIBRARIES})
 
-  ADD_EXECUTABLE (obsidian-client obsidian-client.cpp
-                           #${OBSIDIAN_SOURCE_DIR}/src/app/blob.cpp
-                           #${OBSIDIAN_SOURCE_DIR}/src/comms/blob.cpp
-                           #${OBSIDIAN_SOURCE_DIR}/src/db/blob.cpp
-                           #${OBSIDIAN_SOURCE_DIR}/src/distrib/blob.cpp
-                           ${OBSIDIAN_SOURCE_DIR}/src/fwdmodel/blob.cpp
-                           #${OBSIDIAN_SOURCE_DIR}/src/infer/blob.cpp
-                           ${OBSIDIAN_SOURCE_DIR}/src/input/blob.cpp
-                           ${OBSIDIAN_SOURCE_DIR}/src/io/blob.cpp
-                           ${OBSIDIAN_SOURCE_DIR}/src/likelihood/blob.cpp
-                           ${OBSIDIAN_SOURCE_DIR}/src/prior/blob.cpp
-                           ${OBSIDIAN_SOURCE_DIR}/src/serial/blob.cpp
-                           ${OBSIDIAN_SOURCE_DIR}/src/world/blob.cpp)
+ADD_EXECUTABLE(obsidian-client obsidian-client.cpp obsidianworker.cpp ${PROTO_SRC})
+TARGET_LINK_LIBRARIES(obsidian-client ${obsidianLibs} ${obsidian3rdPartyLibs})
 
-  TARGET_LINK_LIBRARIES(obsidian-client
-                        protobuf
-                        ${LEVELDB_LIBRARY}
-                        ${PROTOBUF_LIBRARIES}
-                        ${ZMQ_LIBRARY}
-                        ${GLOG_LIBRARY}
-                        ${Boost_FILESYSTEM_LIBRARY}
-                        ${Boost_SYSTEM_LIBRARY}
-                        ${Boost_PROGRAM_OPTIONS_LIBRARY}
-                        ${NLOPT_LIBRARIES}
-                        ${STATELINE_LIBRARIES} )
-
-ELSE(CMAKE_BUILD_TYPE MATCHES Release)
-
-  ############################################################################
-  # Obsidian Debug
-  ############################################################################
-  ADD_EXECUTABLE(obsidian-server obsidian-server.cpp ${PROTO_SRC})
-  TARGET_LINK_LIBRARIES(obsidian-server ${obsidianAlgoLibraries}
-                                        ${obsidianBaseLibraries}
-                                        input lh distrib io )
-
-  ADD_EXECUTABLE(obsidian-client obsidian-client.cpp obsidianworker.cpp ${PROTO_SRC})
-  TARGET_LINK_LIBRARIES(obsidian-client ${obsidianAlgoLibraries}
-                                        ${obsidianBaseLibraries}
-                                        input lh distrib io )
-
-  ADD_EXECUTABLE(obsidian-worker obsidian-worker.cpp ${PROTO_SRC})
-  TARGET_LINK_LIBRARIES(obsidian-worker ${obsidianAlgoLibraries}
-                                        ${obsidianBaseLibraries}
-                                        input lh distrib io )
-
-ENDIF(CMAKE_BUILD_TYPE MATCHES Release)
+ADD_EXECUTABLE(obsidian-worker obsidian-worker.cpp ${PROTO_SRC})
+TARGET_LINK_LIBRARIES(obsidian-worker ${obsidianLibs} ${obsidian3rdPartyLibs})
 
 SET_TARGET_PROPERTIES(obsidian-server PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${OBSIDIAN_BINARY_DIR})
 SET_TARGET_PROPERTIES(obsidian-client PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${OBSIDIAN_BINARY_DIR})
@@ -95,7 +42,7 @@ FUNCTION (ADD_DEMO demoName)
   SET_TARGET_PROPERTIES (${demoName} PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY ${OBSIDIAN_BINARY_DIR})
 
-  TARGET_LINK_LIBRARIES (${demoName} ${obsidianAlgoLibraries} ${obsidianBaseLibraries} input io serial)
+  TARGET_LINK_LIBRARIES (${demoName} ${obsidianLibs} ${obsidian3rdPartyLibs} input io serial)
 ENDFUNCTION ()
 
 ADD_CUSTOM_TARGET(symlinks ALL)
@@ -107,5 +54,5 @@ ENDFUNCTION ()
 # Create an empty directory to hold visualisation data
 FILE (MAKE_DIRECTORY ${OBSIDIAN_BINARY_DIR}/data)
 
-## Copy over the GDF input and configuration files
+# Copy over the GDF input and configuration files
 SYMLINK_FILE (${OBSIDIAN_SOURCE_DIR}/src/bin/input.obsidian ${OBSIDIAN_BINARY_DIR})

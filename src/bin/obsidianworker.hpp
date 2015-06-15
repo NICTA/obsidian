@@ -19,7 +19,6 @@
 #include <future>
 #include <zmq.hpp>
 
-namespace sl = stateline;
 
 namespace obsidian
 {

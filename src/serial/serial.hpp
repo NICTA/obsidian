@@ -19,47 +19,4 @@
 #include "serial/seismic.hpp"
 #include "serial/contactpoint.hpp"
 #include "serial/thermal.hpp"
-#include "serial/commstypes.hpp"
-#include "comms/datatypes.hpp"
 
-namespace obsidian
-{
-  namespace comms
-  {
-
-    //Jobs
-    template<ForwardModel f>
-    inline stateline::comms::JobData serialiseJob(const typename Types<f>::Params& params, const std::string& globalData)
-    {
-      stateline::comms::JobData job;
-      job.type = (uint) f;
-      job.globalData = globalData;
-      job.jobData = serialise(params);
-      return job;
-    }
-
-    template<ForwardModel f>
-    inline void unserialiseJob(const stateline::comms::JobData & data, typename Types<f>::GloabalParams& g, typename Types<f>::Params& j)
-    {
-      unserialise(data.jobData, j);
-      unserialise(data.globalData, g);
-    }
-
-    // Results
-    template<ForwardModel f>
-    inline stateline::comms::ResultData serialiseResult(const typename Types<f>::Results& r)
-    {
-      stateline::comms::ResultData d;
-      d.type = (uint) f;
-      d.data = serialise(r);
-      return d;
-    }
-
-    template<ForwardModel f>
-    inline void unserialiseResult(const stateline::comms::ResultData& data, typename Types<f>::Results& r)
-    {
-      unserialise(data.data, r);
-    }
-
-  } // namespace comms
-} // namespace obsidian

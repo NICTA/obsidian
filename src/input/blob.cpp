@@ -15,7 +15,6 @@
 #include "mt.cpp"
 #include "world.cpp"
 #include "contactpoint.cpp"
-#include "mcmc.cpp"
 #include "thermal.cpp"
 #include "global.cpp"
 #include "input.cpp"

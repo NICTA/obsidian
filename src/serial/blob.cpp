@@ -11,11 +11,9 @@
 
 #include "gravity.cpp"
 #include "seismic.cpp"
-#include "commstypes.cpp"
 #include "utility.cpp"
 #include "mt.cpp"
 #include "magnetic.cpp"
 #include "world.cpp"
 #include "contactpoint.cpp"
-#include "mcmc.cpp"
 #include "thermal.cpp"

@@ -14,6 +14,7 @@
 #include <stateline/comms/minion.hpp>
 #include <stateline/comms/worker.hpp>
 
+namespace sl = stateline;
 
 namespace obsidian
 {
