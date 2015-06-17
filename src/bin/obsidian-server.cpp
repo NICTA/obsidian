@@ -19,6 +19,7 @@
 // Prerequisites
 #include <glog/logging.h>
 #include <boost/program_options.hpp>
+#include <boost/algorithm/string.hpp>
 #include <json.hpp>
 
 // Standard Library
@@ -40,6 +41,7 @@ po::options_description commandLineOptions()
   ("recover,r", po::bool_switch()->default_value(false), "force recovery")
   ("anneallength,a", po::value<uint>()->default_value(1000), "anneal chains with n samples before starting mcmc")
   ("loglevel,l", po::value<int>()->default_value(0), "Logging level")
+  ("jobtypes,j",  po::value<std::string>(), "Comma-separated job types")
   ("config,c",po::value<std::string>()->default_value("config.json"), "Path to configuration file")
   ;
   return cmdLine;
@@ -71,6 +73,16 @@ int main(int ac, char* av[])
   json config = initConfig(vm);
   uint port = vm["port"].as<uint>();
   sl::StatelineSettings settings = sl::StatelineSettings::fromJSON(config);
+  if ( vm.count("jobtypes") )
+  {
+    std::vector<std::string> jobList;
+    boost::algorithm::split(jobList,vm["jobtypes"].as<std::string>(),boost::is_any_of(","));
+    settings.jobTypes = jobList;
+  }
+
+  LOG(INFO) << "Starting stateline server with jobs "
+            << boost::algorithm::join(settings.jobTypes,",");
+
   sl::ServerWrapper s(port, settings);
   s.start();
 
