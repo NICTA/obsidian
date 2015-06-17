@@ -14,28 +14,58 @@
 #include "world/interpolate.hpp"
 #include "fwdmodel/fwd.hpp"
 
+#include <glog/logging.h>
+
+#include <future>
+
 namespace obsidian
 {
   namespace fwd
   {
+
+    //! Generate a forward model cache object in a separate thread.
+    //!
+    //! \param boundaryInterpolation The world model interpolation parameters.
+    //! \param spec The global world specifications.
+    //! \param enabled Bool idicating if model is enabled. If not an empty cache is returned.
+    //! \returns std::future containing the models cache object.
+    //!
+    template<ForwardModel f>
+    std::future<typename Types<f>::Cache> generateCacheParallel(const std::vector<world::InterpolatorSpec>& interp,
+                                                                const GlobalSpec& gSpec, bool enabled)
+    {
+      std::future<typename Types<f>::Cache> cache;
+      if (enabled)
+      {
+        cache = std::async( std::launch::async, generateCache<f>, interp, gSpec.world,
+                            globalSpec<GlobalSpec,typename Types<f>::Spec>(gSpec) );
+      } else {
+        cache = std::async( std::launch::deferred, [](){ return typename Types<f>::Cache(); } );
+      }
+      return cache;
+    }
+
     //! Generate a global cache object for all forward models.
     //!
     //! \param boundaryInterpolation The world model interpolation parameters.
     //! \param spec The global world specifications.
     //! \returns Cache object containing the caches of all the forward models.
     //!
-    GlobalCache generateGlobalCache(const std::vector<world::InterpolatorSpec>& boundaryInterpolation, const GlobalSpec& spec,
+    GlobalCache generateGlobalCache(const std::vector<world::InterpolatorSpec>& interp, const GlobalSpec& spec,
                                     const std::set<ForwardModel>& enabled)
     {
       LOG(INFO) << "Generating Cache";
+
+      // Some caches can take a while to generate, do it in parallel
+      auto mag = generateCacheParallel<ForwardModel::MAGNETICS>(interp, spec, enabled.count(ForwardModel::MAGNETICS) );
+      auto mtaniso = generateCacheParallel<ForwardModel::MTANISO>(interp, spec, enabled.count(ForwardModel::MTANISO) );
+      auto seismic = generateCacheParallel<ForwardModel::SEISMIC1D>(interp, spec, enabled.count(ForwardModel::SEISMIC1D) );
+      auto cpoint = generateCacheParallel<ForwardModel::CONTACTPOINT>(interp, spec, enabled.count(ForwardModel::CONTACTPOINT) );
+      auto thermal = generateCacheParallel<ForwardModel::THERMAL>(interp, spec, enabled.count(ForwardModel::THERMAL) );
       return
       {
-        enabled.count(ForwardModel::GRAVITY) ? generateCache<ForwardModel::GRAVITY>(boundaryInterpolation, spec.world, spec.grav) : GravCache(),
-        enabled.count(ForwardModel::MAGNETICS) ? generateCache<ForwardModel::MAGNETICS>(boundaryInterpolation, spec.world, spec.mag) : MagCache(),
-        enabled.count(ForwardModel::MTANISO) ? generateCache<ForwardModel::MTANISO>(boundaryInterpolation, spec.world, spec.mt) : MtAnisoCache(),
-        enabled.count(ForwardModel::SEISMIC1D) ? generateCache<ForwardModel::SEISMIC1D>(boundaryInterpolation, spec.world, spec.s1d) : Seismic1dCache(),
-        enabled.count(ForwardModel::CONTACTPOINT) ? generateCache<ForwardModel::CONTACTPOINT>(boundaryInterpolation, spec.world, spec.cpoint): ContactPointCache(),
-        enabled.count(ForwardModel::THERMAL) ? generateCache<ForwardModel::THERMAL>(boundaryInterpolation, spec.world, spec.therm): ThermalCache()
+        enabled.count(ForwardModel::GRAVITY) ? generateCache<ForwardModel::GRAVITY>(interp, spec.world, spec.grav) : GravCache(),
+        mag.get(), mtaniso.get(), seismic.get(), cpoint.get(), thermal.get()
       };
     }
 
