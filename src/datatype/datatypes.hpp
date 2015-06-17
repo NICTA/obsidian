@@ -156,4 +156,33 @@ namespace obsidian
   }
 
 
+  //! For accessing subfields of global.
+  //!
+  template<typename T, typename R> const R & globalCache(const T&);
+
+  template<> inline const GravCache & globalCache<GlobalCache, GravCache>(const GlobalCache&g)
+  {
+    return g.grav;
+  }
+  template<> inline const MagCache & globalCache<GlobalCache, MagCache>(const GlobalCache&g)
+  {
+    return g.mag;
+  }
+  template<> inline const MtAnisoCache & globalCache<GlobalCache, MtAnisoCache>(const GlobalCache&g)
+  {
+    return g.mt;
+  }
+  template<> inline const Seismic1dCache & globalCache<GlobalCache, Seismic1dCache>(const GlobalCache&g)
+  {
+    return g.s1d;
+  }
+  template<> inline const ContactPointCache & globalCache<GlobalCache, ContactPointCache>(const GlobalCache&g)
+  {
+    return g.cpoint;
+  }
+  template<> inline const ThermalCache & globalCache<GlobalCache, ThermalCache>(const GlobalCache&g)
+  {
+    return g.therm;
+  }
+
 } // namespace obsidian
