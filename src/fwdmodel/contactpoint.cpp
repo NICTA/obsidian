@@ -11,6 +11,8 @@
 #include "fwd.hpp"
 #include "world/voxelise.hpp"
 
+#include <glog/logging.h>
+
 namespace obsidian
 {
   namespace fwd
@@ -26,6 +28,7 @@ namespace obsidian
     ContactPointCache generateCache<ForwardModel::CONTACTPOINT>(const std::vector<world::InterpolatorSpec>& boundaryInterpolation,
                                                                 const WorldSpec& worldSpec, const ContactPointSpec& spec)
     {
+      LOG(INFO)<< "Caching contactpoint sensitivity...";
       return
       {
         boundaryInterpolation,

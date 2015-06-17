@@ -409,11 +409,12 @@ namespace obsidian
     ThermalCache generateCache<ForwardModel::THERMAL>(const std::vector<world::InterpolatorSpec>& boundaryInterpolation,
                                                       const WorldSpec& worldSpec, const ThermalSpec& thermSpec)
     {
+      LOG(INFO)<< "Caching thermal sensitivity...";
       const VoxelSpec& thermVox = thermSpec.voxelisation;
       world::Query thermQuery(boundaryInterpolation, worldSpec, thermVox.xResolution, thermVox.yResolution, thermVox.zResolution,
                               world::SamplingStrategy::noAA);
-      return
-      { boundaryInterpolation, thermQuery, worldSpec.xBounds, worldSpec.yBounds, worldSpec.zBounds};
+      return { boundaryInterpolation, thermQuery,
+               worldSpec.xBounds, worldSpec.yBounds, worldSpec.zBounds};
     }
 
     template<>

@@ -13,6 +13,8 @@
 #include "world/voxelise.hpp"
 #include "world/property.hpp"
 
+#include <glog/logging.h>
+
 namespace obsidian
 {
   namespace fwd
@@ -28,6 +30,7 @@ namespace obsidian
     Seismic1dCache generateCache<ForwardModel::SEISMIC1D>(const std::vector<world::InterpolatorSpec>& boundaryInterpolation,
                                                           const WorldSpec& worldSpec, const Seismic1dSpec& spec)
     {
+      LOG(INFO)<< "Caching seismic1d sensitivity...";
       return
       {
         boundaryInterpolation,

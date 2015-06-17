@@ -27,6 +27,7 @@ namespace obsidian
     GlobalCache generateGlobalCache(const std::vector<world::InterpolatorSpec>& boundaryInterpolation, const GlobalSpec& spec,
                                     const std::set<ForwardModel>& enabled)
     {
+      LOG(INFO) << "Generating Cache";
       return
       {
         enabled.count(ForwardModel::GRAVITY) ? generateCache<ForwardModel::GRAVITY>(boundaryInterpolation, spec.world, spec.grav) : GravCache(),

@@ -13,6 +13,8 @@
 #include "world/voxelise.hpp"
 #include "world/property.hpp"
 
+#include <glog/logging.h>
+
 namespace obsidian
 {
   namespace fwd
@@ -168,6 +170,7 @@ namespace obsidian
     MtAnisoCache generateCache<ForwardModel::MTANISO>(const std::vector<world::InterpolatorSpec>& boundaryInterpolation,
                                                       const WorldSpec& worldSpec, const MtAnisoSpec& mtSpec)
     {
+      LOG(INFO)<< "Caching mtaniso sensitivity...";
       return
       {
         boundaryInterpolation,

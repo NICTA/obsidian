@@ -104,6 +104,7 @@ namespace obsidian
 
   inline GlobalResults loadResults(const WorldSpec & worldSpec, const po::variables_map &vm, const std::set<ForwardModel>& sensorsEnabled)
   {
+    LOG(INFO) << "Loading sensor data";
     GlobalResults results;
     applyToSensorsEnabled<getResults>(sensorsEnabled, std::ref(results), std::cref(worldSpec), std::cref(vm), std::cref(sensorsEnabled));
     return results;

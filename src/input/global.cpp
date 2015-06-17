@@ -57,6 +57,7 @@ namespace obsidian
   template<>
   GlobalPrior parsePrior(const po::variables_map& vm, const std::set<ForwardModel> & sensorsEnabled)
   {
+    LOG(INFO) << "Parsing prior";
     return
     {
       parsePrior<prior::WorldParamsPrior>(vm, sensorsEnabled),
