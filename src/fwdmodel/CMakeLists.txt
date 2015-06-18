@@ -12,6 +12,7 @@ ADD_LIBRARY(fwd-gravmag gravmag.cpp
 
 # MT forward model
 ADD_LIBRARY(fwd-mt mt1d.cpp)
+target_link_libraries(fwd-mt world)
 
 # Seismic forward model
 ADD_LIBRARY(fwd-seismic seismic.cpp)

@@ -43,7 +43,7 @@ SET( CMAKE_REQUIRED_FLAGS "${CMAKE_CXX_FLAGS}" )
 set(GTEST_SRC_DIR ${PREREQ_DIR}/src/gtest-1.7.0)
 set(BOOST_ROOT ${PREREQ_DIR})
 set(GLOG_ROOT_DIR ${PREREQ_DIR})
-set(PROTOBUF_ROOT ${PREREQ_DIR})
+#set(PROTOBUF_ROOT ${PREREQ_DIR})
 set(ZMQ_ROOT_DIR ${PREREQ_DIR})
 set(EIGEN3_ROOT_DIR ${PREREQ_DIR})
 set(STATELINE_ROOT_DIR ${PREREQ_DIR})
@@ -107,8 +107,8 @@ FIND_PACKAGE( ZMQ REQUIRED )
 
 #Protobuf
 #get environment variable for built-in protobuf finder
-SET(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} ${PROTOBUF_ROOT})
-FIND_PACKAGE(Protobuf REQUIRED)
+#SET(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} ${PROTOBUF_ROOT})
+#FIND_PACKAGE(Protobuf REQUIRED)
 
 #Eigen
 FIND_PACKAGE(Eigen3 3.2.0 REQUIRED)
@@ -129,7 +129,7 @@ FIND_PACKAGE( Stateline )
 ##############################################################################
 
 INCLUDE_DIRECTORIES("${OBSIDIAN_SOURCE_DIR}/src"
-  "${CMAKE_CURRENT_BINARY_DIR}/src" # for protobuf files
+  #"${CMAKE_CURRENT_BINARY_DIR}/src" # for protobuf files
   ${ZMQ_INCLUDE_DIR}
   ${GLOG_INCLUDE_DIR}
   ${Boost_INCLUDE_DIR}
@@ -195,7 +195,7 @@ ENDMACRO( ADD_SUBPROJECT directory )
 
 ADD_SUBPROJECT(src/test)
 ADD_SUBPROJECT(src/app)
-ADD_SUBPROJECT(src/serial)
+#ADD_SUBPROJECT(src/serial)
 ADD_SUBPROJECT(src/prior)
 ADD_SUBPROJECT(src/world)
 ADD_SUBPROJECT(src/distrib)

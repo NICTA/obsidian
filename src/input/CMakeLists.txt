@@ -15,8 +15,6 @@ ADD_LIBRARY(input input.cpp
                   contactpoint.cpp
                   thermal.cpp)
 
-target_link_libraries(input ${Boost_LIBRARIES})
-
-SET(TESTLIBS input distrib io serial fwd-mt ${GLOG_LIBRARY} )
+target_link_libraries(input fwd-mt world ${Boost_LIBRARIES})
 
 ADD_SUBDIRECTORY(test)

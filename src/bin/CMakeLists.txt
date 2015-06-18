@@ -14,17 +14,16 @@ SET(obsidian3rdPartyLibs
         ${STATELINE_LIBRARIES})
 
 SET(obsidianLibs
-        input lh distrib io
-        world prior serial
+        input lh distrib io world prior
         fwd-gravmag fwd-mt fwd-seismic
         fwd-contactpoint fwd-thermal)
 
-ADD_EXECUTABLE(obsidian-server obsidian-server.cpp ${PROTO_SRC})
+ADD_EXECUTABLE(obsidian-server obsidian-server.cpp)
 TARGET_LINK_LIBRARIES(obsidian-server ${GLOG_LIBRARY}
                                       ${Boost_PROGRAM_OPTIONS_LIBRARY}
                                       ${STATELINE_LIBRARIES})
 
-ADD_EXECUTABLE(obsidian-worker obsidian-worker.cpp ${PROTO_SRC})
+ADD_EXECUTABLE(obsidian-worker obsidian-worker.cpp)
 TARGET_LINK_LIBRARIES(obsidian-worker ${obsidianLibs} ${obsidian3rdPartyLibs})
 
 SET_TARGET_PROPERTIES(obsidian-server PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${OBSIDIAN_BINARY_DIR})

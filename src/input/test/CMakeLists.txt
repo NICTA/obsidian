@@ -5,14 +5,14 @@
 # Authors: Lachlan McCalman
 # Date: 2014 
 
-SET(TESTLIBS input distrib io serial fwd-mt ${GLOG_LIBRARY} )
+SET(TESTLIBS input distrib io prior world ${GLOG_LIBRARY} )
 
 ADD_EXECUTABLE(test-input testinput.cpp)
 TARGET_LINK_LIBRARIES(test-input ${TESTLIBS} )
 REGISTER_UNIT_TESTS(test-input)
 
 ADD_EXECUTABLE(test-input-world testworld.cpp)
-TARGET_LINK_LIBRARIES(test-input-world prior ${TESTLIBS} )
+TARGET_LINK_LIBRARIES(test-input-world ${TESTLIBS} )
 REGISTER_UNIT_TESTS(test-input-world)
 
 ADD_EXECUTABLE(test-input-gravity testgravity.cpp)
@@ -24,7 +24,7 @@ TARGET_LINK_LIBRARIES(test-input-magnetism ${TESTLIBS} )
 REGISTER_UNIT_TESTS(test-input-magnetism)
 
 ADD_EXECUTABLE(test-input-mt testmt.cpp)
-TARGET_LINK_LIBRARIES(test-input-mt fwd-gravmag ${TESTLIBS} )
+TARGET_LINK_LIBRARIES(test-input-mt ${TESTLIBS} )
 REGISTER_UNIT_TESTS(test-input-mt)
 
 ADD_EXECUTABLE(test-input-seismic testseismic.cpp)
