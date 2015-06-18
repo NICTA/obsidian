@@ -37,10 +37,6 @@ For easy integration, compile using static linking and static runtime.
 
 ### google-protobuf 2.5.0 or later
 
-### leveldb 1.15.0 or later
-
-### zlib
-
 ## Build from source
 
 Once the prerequisites are built, make a new folder where you want to build the tools. Change current folder to that folder and run build.sh or buildRelease.sh in the source folder from that folder. This will invoke cmake

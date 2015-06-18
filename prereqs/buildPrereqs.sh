@@ -65,11 +65,3 @@ make -j$(nproc)
 make install
 cd ..
 
-# leveldb
-wget -c https://leveldb.googlecode.com/files/leveldb-1.15.0.tar.gz
-[ -d leveldb-1.15.0 ] || tar -xvf leveldb-1.15.0.tar.gz
-cd leveldb-1.15.0
-make -j$(nproc)
-cp libleveldb.a libleveldb.so libleveldb.so.1 libleveldb.so.1.15 $PREREQ_DIR/lib
-cp -r include/leveldb $PREREQ_DIR/include/
-cd ..

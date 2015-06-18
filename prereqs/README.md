@@ -19,7 +19,6 @@ The project currently builds with the following libaries:
 * zeromq 4.0.3
 * cppzeromq 2358037407 (commit hash)
 * Protocol-buffers (protobuf) 2.5.0
-* leveldb 1.15.0
 
 
 There is a build script buildPrereqs.sh that should automatically download and
@@ -71,9 +70,3 @@ from protobuf src directory
     make -j 8
     make install
 
-from leveldb src directory
---------------------------
-    make -j 8
-    cp libleveldb.a libleveldb.so libleveldb.so.1 libleveldb.so.1.15 ../lib
-    cp -r include/leveldb ../include
-    cd ..

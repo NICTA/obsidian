@@ -46,7 +46,6 @@ set(GLOG_ROOT_DIR ${PREREQ_DIR})
 set(PROTOBUF_ROOT ${PREREQ_DIR})
 set(ZMQ_ROOT_DIR ${PREREQ_DIR})
 set(EIGEN3_ROOT_DIR ${PREREQ_DIR})
-set(LEVELDB_ROOT_DIR ${PREREQ_DIR})
 set(STATELINE_ROOT_DIR ${PREREQ_DIR})
 
 ##############################################################################
@@ -116,9 +115,6 @@ FIND_PACKAGE(Eigen3 3.2.0 REQUIRED)
 
 # Python
 FIND_PACKAGE( PythonInterp )
-
-# Leveldb
-FIND_PACKAGE( Leveldb )
 
 # Google Test
 MESSAGE( STATUS "GTEST directory: ${GTEST_SRC_DIR}" )

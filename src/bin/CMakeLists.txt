@@ -8,7 +8,6 @@
 SET(obsidian3rdPartyLibs
         ${ZMQ_LIBRARY}
         ${GLOG_LIBRARY}
-        ${LEVELDB_LIBRARY}
         ${Boost_FILESYSTEM_LIBRARY}
         ${Boost_SYSTEM_LIBRARY}
         ${Boost_PROGRAM_OPTIONS_LIBRARY}
