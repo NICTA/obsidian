@@ -65,3 +65,19 @@ make -j$(nproc)
 make install
 cd ..
 
+# json
+wget -c https://github.com/nlohmann/json/archive/master.zip -O json-master.zip
+[ -d json-master ] || unzip -o json-master.zip
+cp json-master/src/json.hpp $PREREQ_DIR/include
+
+# stateline
+STATELINE_SHA=84d62a3c19c431b3521334b43fc65e33db75aa77
+STATELINE_DIR=stateline-${STATELINE_SHA}
+wget -c https://github.com/nicta/stateline/archive/${STATELINE_SHA}.zip -O stateline.zip
+[ -d "${STATELINE_DIR}" ] || unzip -o stateline.zip
+cd ${STATELINE_DIR}
+cmake $(pwd) -DCMAKE_BUILD_TYPE=Release -DLOCAL_INSTALL=OFF -DSTATELINE_BINARY_DIR=$(pwd) -DSTATELINE_SOURCE_DIR=$(pwd) -DPREREQ_DIR=$PREREQ_DIR -DCMAKE_INSTALL_PREFIX=$PREREQ_DIR
+make -j$(nproc) && 
+make install -j$(nproc)
+cd ..
+

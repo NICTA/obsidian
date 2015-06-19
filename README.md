@@ -41,6 +41,8 @@ Obsidian requires the following libraries as prerequisites:
 * zeromq 4.0.3
 * cppzeromq 2358037407 (commit hash)
 * Protocol-buffers (protobuf) 2.5.0
+* json (https://github.com/nlohmann/json)
+* stateline
 
 Please note that the actual source of google-test is required, so don't attempt
 to use a pre-compiled version from a package manager. Obsidian compiles

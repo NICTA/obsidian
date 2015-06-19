@@ -19,6 +19,8 @@ The project currently builds with the following libaries:
 * zeromq 4.0.3
 * cppzeromq 2358037407 (commit hash)
 * Protocol-buffers (protobuf) 2.5.0
+* json (https://github.com/nlohmann/json)
+* stateline
 
 
 There is a build script buildPrereqs.sh that should automatically download and
@@ -69,4 +71,15 @@ from protobuf src directory
     ./configure --prefix=$PREREQ_DIR
     make -j 8
     make install
+
+from json src directory
+-----------------------
+    cp json-master/src/json.hpp $PREREQ_DIR/include
+
+from stateline src directory
+----------------------------
+    cmake $(pwd) -DLOCAL_INSTALL=OFF -DSTATELINE_BINARY_DIR=$(pwd) -DSTATELINE_SOURCE_DIR=$(pwd) -DPREREQ_DIR=$PREREQ_DIR -DCMAKE_INSTALL_PREFIX=$PREREQ_DIR
+    make -j$(nproc) && 
+    make install -j$(nproc)
+
 
