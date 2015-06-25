@@ -9,6 +9,8 @@
   "xjobTypes": ["prior","gravity","magnetism","mtaniso","seismic1d","contactpoint","thermal"],
   "yjobTypes": ["prior","gravity","magnetism","mtaniso","thermal"],
   "jobTypes": ["gravity"],
+  "annealLength": 50,
+  "xboundaryFile": "boundaryFile.txt",
   "sigmaAdaption": {
     "windowSize": 100000,
     "adaptionLength": 100000,

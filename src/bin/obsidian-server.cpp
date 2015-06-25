@@ -10,6 +10,9 @@
 //! \copyright (c) 2014, NICTA
 //!
 
+#include "input/input.hpp"
+#include "fwdmodel/global.hpp"
+
 //Stateline
 #include <stateline/app/logging.hpp>
 #include <stateline/app/serverwrapper.hpp>
@@ -26,6 +29,7 @@
 #include <thread>
 #include <chrono>
 
+using namespace obsidian;
 namespace sl = stateline;
 using json = nlohmann::json;
 
@@ -36,12 +40,13 @@ po::options_description commandLineOptions()
 {
   po::options_description cmdLine(" Command Line Options");
   cmdLine.add_options() //
-  ("port,p", po::value<uint>()->default_value(5555), "TCP port to accept connections") //
-  ("inputfile,i", po::value<std::string>()->default_value("input.obsidian"), "input file") //
+  ("port,p", po::value<uint>()->default_value(5555), "TCP port to accept connections")
+  ("inputfile,i", po::value<std::string>()->default_value("input.obsidian"), "input file")
   ("recover,r", po::bool_switch()->default_value(false), "force recovery")
-  ("anneallength,a", po::value<uint>()->default_value(1000), "anneal chains with n samples before starting mcmc")
+  ("anneallength,a", po::value<uint>(), "anneal chains with n samples before starting mcmc")
   ("loglevel,l", po::value<int>()->default_value(0), "Logging level")
-  ("jobtypes,j",  po::value<std::string>(), "Comma-separated job types")
+  ("jobtypes,j", po::value<std::string>(), "Comma-separated job types")
+  ("input,i", po::value<std::string>(), "Input file")
   ("config,c",po::value<std::string>()->default_value("config.json"), "Path to configuration file")
   ;
   return cmdLine;
@@ -61,6 +66,15 @@ json initConfig(const po::variables_map& vm)
   return config;
 }
 
+sl::mcmc::ProposalBounds calculateProposalBounds(const std::string& inputFile)
+{
+  boost::program_options::variables_map input;
+  readInputFile(inputFile, input);
+  const std::set<ForwardModel> modelsEnabled = parseSensorsEnabled(input);
+  const prior::WorldParamsPrior wPrior = parsePrior<prior::WorldParamsPrior>(input, modelsEnabled);
+  return { wPrior.thetaMinBound(), wPrior.thetaMaxBound() };
+}
+
 int main(int ac, char* av[])
 {
   // Get the settings from the command line
@@ -78,6 +92,17 @@ int main(int ac, char* av[])
     std::vector<std::string> jobList;
     boost::algorithm::split(jobList,vm["jobtypes"].as<std::string>(),boost::is_any_of(","));
     settings.jobTypes = jobList;
+  }
+
+  if (vm.count("anneallength"))
+    settings.annealLength = vm["anneallength"].as<uint>();
+
+  // Proposal bounds
+  if (vm.count("input") == 1)
+  {
+    settings.proposalBounds = calculateProposalBounds(vm["input"].as<std::string>());
+    VLOG(1) << "Proposal boundary (min): " << settings.proposalBounds.min.transpose();
+    VLOG(1) << "Proposal boundary (max): " << settings.proposalBounds.max.transpose();
   }
 
   LOG(INFO) << "Starting stateline server with jobs "

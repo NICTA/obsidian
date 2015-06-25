@@ -39,6 +39,7 @@ po::options_description commandLineOptions()
     ("address,a",   po::value<std::string>()->default_value("localhost:5555"), "Address of server")
     ("input,i",     po::value<std::string>()->default_value("input.obsidian"), "Input file")
     ("jobtypes,j",  po::value<std::string>()->default_value("prior"), "Comma-separated job types")
+    ("printBounds", po::value<bool>()->default_value(false), "Print whitened prior bounds and exit.")
     ;
   return opts;
 }
@@ -117,6 +118,21 @@ std::string to_string(std::set<ForwardModel> enabled)
   return oss.str();
 }
 
+void printBounds(const prior::WorldParamsPrior& wPrior)
+{
+  const auto thetaMin = wPrior.thetaMinBound();
+  const auto thetaMax = wPrior.thetaMaxBound();
+
+  std::cout << std::endl << "World model theta (min,max) bounds: ["
+            << thetaMin.rows() << "," << thetaMax.rows() <<"]" << std::endl;
+  for (int i=0; i<thetaMin.rows(); ++i)
+  {
+    std::cout << i << ": " << thetaMin(i)<< " " << thetaMax(i) << std::endl;
+  }
+  return;
+}
+
+
 
 int main(int ac, char *av[])
 {
@@ -133,26 +149,37 @@ int main(int ac, char *av[])
 
   // Determine which sensors are enabled from config and command line overrides
   std::set<ForwardModel> modelsConfig = parseSensorsEnabled(vm);
+
+  // Create prior
+  const GlobalPrior gPrior = parsePrior<GlobalPrior>(vm, modelsConfig);
+  if (vm["printBounds"].as<bool>())
+  {
+    printBounds(gPrior.world);
+    return 0;
+  }
+
+  // Get list of forward models to run for this worker
   modelsConfig.insert(ForwardModel::PRIOR);
-
   std::vector<uint> jobList = jobTypesToValues(io::split(vm["jobtypes"].as<std::string>(), ','));
-
   std::set<ForwardModel> modelsEnabled;
-  if ( !jobList.empty() ) {
+  if ( !jobList.empty() )
+  {
     std::set<ForwardModel> modelsOverride;
-    for (uint i : jobList) {
+    for (uint i : jobList)
+    {
       modelsOverride.insert(static_cast<ForwardModel>(i));
     }
-    set_intersection( modelsConfig.begin(), modelsConfig.end(),
-                      modelsOverride.begin(), modelsOverride.end(),
-                      std::inserter(modelsEnabled, modelsEnabled.begin()) );
-  } else {
+    std::set_intersection( modelsConfig.begin(), modelsConfig.end(),
+                           modelsOverride.begin(), modelsOverride.end(),
+                           std::inserter(modelsEnabled, modelsEnabled.begin()) );
+  }
+  else
+  {
     modelsEnabled = modelsConfig;
   }
 
   // Create all data structures required for forward modelling
   const GlobalSpec gSpec = parseSpec<GlobalSpec>(vm, modelsEnabled);
-  const GlobalPrior gPrior = parsePrior<GlobalPrior>(vm, modelsEnabled);
   const GlobalResults gResults = loadResults(gSpec.world, vm, modelsEnabled);
   const std::vector<world::InterpolatorSpec> interp = world::worldspec2Interp(gSpec.world);
   const GlobalCache gCache = fwd::generateGlobalCache(interp, gSpec, modelsEnabled);
@@ -191,7 +218,8 @@ int main(int ac, char *av[])
                                    std::cref(lhMap), std::cref(address) ) );
   }
 
-  for (auto& t : threads) {
+  for (auto& t : threads)
+  {
     t.wait();
   }
 

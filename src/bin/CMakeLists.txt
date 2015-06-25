@@ -19,9 +19,10 @@ SET(obsidianLibs
         fwd-contactpoint fwd-thermal)
 
 ADD_EXECUTABLE(obsidian-server obsidian-server.cpp)
-TARGET_LINK_LIBRARIES(obsidian-server ${GLOG_LIBRARY}
-                                      ${Boost_PROGRAM_OPTIONS_LIBRARY}
-                                      ${STATELINE_LIBRARIES})
+#TARGET_LINK_LIBRARIES(obsidian-server ${GLOG_LIBRARY}
+#                                      ${Boost_PROGRAM_OPTIONS_LIBRARY}
+#                                      ${STATELINE_LIBRARIES})
+TARGET_LINK_LIBRARIES(obsidian-server ${obsidianLibs} ${obsidian3rdPartyLibs})
 
 ADD_EXECUTABLE(obsidian-worker obsidian-worker.cpp)
 TARGET_LINK_LIBRARIES(obsidian-worker ${obsidianLibs} ${obsidian3rdPartyLibs})

@@ -36,25 +36,25 @@ namespace obsidian
     double whiten(double x, double mu, double sigmaSq, double min, double max)
     {
       double sd = std::sqrt(sigmaSq);
-      double range = max - min;
-      double scale = std::min(sd, range / 5.0);
-      return (x - mu) / scale;
+      //double range = max - min;
+      //double scale = std::min(sd, range / 5.0);
+      return (x - mu) / sd;
     }
 
     double unwhiten(double x, double mu, double sigmaSq, double min, double max)
     {
       double sd = std::sqrt(sigmaSq);
-      double range = max - min;
-      double scale = std::min(sd, range / 5.0);
-      return (x * scale) + mu;
+      //double range = max - min;
+      //double scale = std::min(sd, range / 5.0);
+      return (x * sd) + mu;
     }
 
-    Eigen::VectorXd WorldParamsPrior::thetaMinBound()
+    Eigen::VectorXd WorldParamsPrior::thetaMinBound() const
     {
       return thetaMin;
     }
 
-    Eigen::VectorXd WorldParamsPrior::thetaMaxBound()
+    Eigen::VectorXd WorldParamsPrior::thetaMaxBound() const
     {
       return thetaMax;
     }

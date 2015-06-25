@@ -83,9 +83,8 @@ namespace obsidian
         VLOG(1) << "Theta max:" << thetaMax.transpose();
       }
       
-      Eigen::VectorXd thetaMinBound();
-
-      Eigen::VectorXd thetaMaxBound();
+      Eigen::VectorXd thetaMinBound() const;
+      Eigen::VectorXd thetaMaxBound() const;
 
       // build a WorldParams object from a flat vector
       WorldParams reconstruct(const Eigen::VectorXd& theta) const;
