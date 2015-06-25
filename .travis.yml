@@ -1,0 +1,40 @@
+language: cpp
+compiler: gcc
+
+# whitelist
+branches:
+  only:
+    - test/travisci
+
+
+before_install:
+  - pwd
+  - echo "nproc=$(nproc)"
+  - export OBSIDIAN_SOURCE_DIR=$(pwd)
+  - cd ..
+  - mkdir obsidian-deps
+  - cd obsidian-deps
+  - export PREREQ_DIR=$(pwd)
+  - export BOOST_ROOT=$PREREQ_DIR
+  - cp ../obsidian/prereqs/buildPrereqs.sh .
+
+install:
+  - pwd
+  - ./buildPrereqs.sh
+
+before_script:
+  - pwd
+# - ls $BOOST_ROOT/include
+# - ls $BOOST_ROOT/include/boost-1_55
+  - ls -la $BOOST_ROOT/include/boost-1_55/boost
+# - ls -la $BOOST_ROOT/include/boost-1_55/boost | wc -l
+  - ls -la $BOOST_ROOT/lib
+# - ls -la $BOOST_ROOT/lib | wc -l
+  - cd ..
+  - mkdir obsidian-build
+  - cd obsidian-build
+  - echo $OBSIDIAN_SOURCE_DIR
+  - echo $PREREQ_DIR
+  - cmake $OBSIDIAN_SOURCE_DIR -DBoost_DEBUG=ON -DOBSIDIAN_BINARY_DIR=$(pwd) -DOBSIDIAN_SOURCE_DIR=$OBSIDIAN_SOURCE_DIR -DPREREQ_DIR=$PREREQ_DIR $@
+  - make 
+
