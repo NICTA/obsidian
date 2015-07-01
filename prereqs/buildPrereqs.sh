@@ -71,7 +71,7 @@ wget -c https://github.com/nlohmann/json/archive/master.zip -O json-master.zip
 cp json-master/src/json.hpp $PREREQ_DIR/include
 
 # stateline
-STATELINE_SHA=84d62a3c19c431b3521334b43fc65e33db75aa77
+STATELINE_SHA=a212316dc1832052145ee7076188c4f27d7eb087
 STATELINE_DIR=stateline-${STATELINE_SHA}
 wget -c https://github.com/nicta/stateline/archive/${STATELINE_SHA}.zip -O stateline.zip
 [ -d "${STATELINE_DIR}" ] || unzip -o stateline.zip
