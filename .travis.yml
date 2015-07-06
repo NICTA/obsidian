@@ -16,6 +16,8 @@ before_install:
   - cd obsidian-deps
   - export PREREQ_DIR=$(pwd)
   - export BOOST_ROOT=$PREREQ_DIR
+  - export Boost_INCLUDE_DIR=${PREREQ_DIR}/include/boost-1_55/
+  - export BOOST_INCLUDEDIR=${PREREQ_DIR}/include/boost-1_55/
   - cp ../obsidian/prereqs/buildPrereqs.sh .
 
 install:

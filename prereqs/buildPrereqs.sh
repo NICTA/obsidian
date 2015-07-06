@@ -77,7 +77,6 @@ STATELINE_DIR=stateline-${STATELINE_SHA}
 wget --quiet -c https://github.com/nicta/stateline/archive/${STATELINE_SHA}.zip -O stateline.zip
 [ -d "${STATELINE_DIR}" ] || unzip -qqo stateline.zip 
 cd ${STATELINE_DIR}
-export Boost_INCLUDE_DIR=${PREREQ_DIR}/include/boost-1_55/
 cmake $(pwd) -DCMAKE_BUILD_TYPE=Release -DLOCAL_INSTALL=OFF -DSTATELINE_BINARY_DIR=$(pwd) -DSTATELINE_SOURCE_DIR=$(pwd) -DPREREQ_DIR=$PREREQ_DIR -DCMAKE_INSTALL_PREFIX=$PREREQ_DIR
 make install -j$(nproc) 
 cd ..
