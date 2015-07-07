@@ -1,5 +1,5 @@
 language: cpp
-compiler: gcc
+compiler: g++
 
 # whitelist
 branches:
@@ -8,6 +8,8 @@ branches:
 
 
 before_install:
+  - sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
+  - sudo apt-get update -qq
   - pwd
   - echo "nproc=$(nproc)"
   - export OBSIDIAN_SOURCE_DIR=$(pwd)
@@ -21,6 +23,8 @@ before_install:
   - cp ../obsidian/prereqs/buildPrereqs.sh .
 
 install:
+  - sudo apt-get install -qq g++-4.8
+  - export CXX="g++-4.8"
   - pwd
   - ./buildPrereqs.sh
 
