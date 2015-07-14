@@ -27,8 +27,12 @@ TARGET_LINK_LIBRARIES(obsidian-server ${obsidianLibs} ${obsidian3rdPartyLibs})
 ADD_EXECUTABLE(obsidian-worker obsidian-worker.cpp)
 TARGET_LINK_LIBRARIES(obsidian-worker ${obsidianLibs} ${obsidian3rdPartyLibs})
 
-SET_TARGET_PROPERTIES(obsidian-server PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${OBSIDIAN_BINARY_DIR})
-SET_TARGET_PROPERTIES(obsidian-worker PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${OBSIDIAN_BINARY_DIR})
+ADD_EXECUTABLE(obsidian-analyse obsidian-analyse.cpp)
+TARGET_LINK_LIBRARIES(obsidian-analyse ${obsidianLibs} ${obsidian3rdPartyLibs} z)
+
+SET_TARGET_PROPERTIES(obsidian-server  PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${OBSIDIAN_BINARY_DIR})
+SET_TARGET_PROPERTIES(obsidian-worker  PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${OBSIDIAN_BINARY_DIR})
+SET_TARGET_PROPERTIES(obsidian-analyse PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${OBSIDIAN_BINARY_DIR})
 
 # Macro for adding demos
 FUNCTION(ADD_DEMO demoName)
