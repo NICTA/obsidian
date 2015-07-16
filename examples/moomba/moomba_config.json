@@ -4,10 +4,11 @@
     "min": [],
     "max": []
   },
-  "duration": 20,
+  "duration": 3600,
   "sigma": 1.0,
-  "jobTypes": ["prior","gravity","magnetism","mtaniso","thermal"],
-  "annealLength": 1,
+  "xjobTypes": ["prior","gravity","magnetism","mtaniso","thermal"],
+  "jobTypes": ["prior"],
+  "annealLength": 50,
   "sigmaAdaption": {
     "windowSize": 100000,
     "adaptionLength": 100000,
@@ -38,7 +39,7 @@
     }
   },
   "output": {
-    "directory": "cpp-demo-output",
+    "directory": "output",
     "cacheLength": 20
   }
 }
