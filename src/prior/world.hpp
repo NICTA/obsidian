@@ -79,8 +79,6 @@ namespace obsidian
         maxParams.controlPoints = ctrlptMaxs;
         thetaMin = deconstruct(minParams);
         thetaMax = deconstruct(maxParams);
-        VLOG(1) << "Theta min:" << thetaMin.transpose();
-        VLOG(1) << "Theta max:" << thetaMax.transpose();
       }
       
       Eigen::VectorXd thetaMinBound() const;
@@ -93,13 +91,13 @@ namespace obsidian
       double evaluatePDF(const Eigen::VectorXd& theta) const;
 
       // randomly sample a valid set of parameters
-      Eigen::VectorXd sample(std::mt19937 &gen);
+      Eigen::VectorXd sample(std::mt19937 &gen) const;
 
       // Method to compute the size of the prior
       uint size() const;
 
       // turn a WorldParams object into a flat vector
-      Eigen::VectorXd deconstruct(const WorldParams& params);
+      Eigen::VectorXd deconstruct(const WorldParams& params) const;
 
       // private:
       std::vector<Eigen::MatrixXi> ctrlptMasks;
