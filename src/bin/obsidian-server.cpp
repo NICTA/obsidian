@@ -72,7 +72,26 @@ sl::mcmc::ProposalBounds calculateProposalBounds(const std::string& inputFile)
   readInputFile(inputFile, input);
   const std::set<ForwardModel> modelsEnabled = parseSensorsEnabled(input);
   const prior::WorldParamsPrior wPrior = parsePrior<prior::WorldParamsPrior>(input, modelsEnabled);
-  return { wPrior.thetaMinBound(), wPrior.thetaMaxBound() };
+  sl::mcmc::ProposalBounds bounds = { wPrior.thetaMinBound(), wPrior.thetaMaxBound() };
+
+  CHECK(bounds.min.rows() == bounds.max.rows());
+
+  if (VLOG_IS_ON(1)) {
+    std::ostringstream oss;
+    oss.precision(5);
+    oss << "Sample proposal bounds:"      << std::endl
+        << " Dim         Min         Max" << std::endl
+        << "----------------------------" << std::endl;
+    for (uint i = 0; i < bounds.min.rows(); ++i )
+    {
+      oss << std::setw(4)  << i             << "  "
+          << std::setw(10) << bounds.min[i] << "  "
+          << std::setw(10) << bounds.max[i] << std::endl;
+    }
+    VLOG(1) << oss.str();
+  }
+
+  return bounds;
 }
 
 int main(int ac, char* av[])
@@ -101,8 +120,6 @@ int main(int ac, char* av[])
   if (vm.count("input") == 1)
   {
     settings.proposalBounds = calculateProposalBounds(vm["input"].as<std::string>());
-    VLOG(1) << "Proposal boundary (min): " << settings.proposalBounds.min.transpose();
-    VLOG(1) << "Proposal boundary (max): " << settings.proposalBounds.max.transpose();
   }
 
   LOG(INFO) << "Starting stateline server with jobs "

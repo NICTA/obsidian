@@ -146,7 +146,8 @@ namespace obsidian
     std::vector<std::string> rockPropNames
     {
       "Density", "LogSusceptibility", "ThermalConductivity", "ThermalProductivity",
-      "LogResistivityX", "LogResistivityY", "LogResistivityZ", "ResistivityPhase", "PWaveVelocity"
+      "LogResistivityX", "LogResistivityY", "LogResistivityZ", "ResistivityPhase", "PWaveVelocity",
+      "LayerIndex"
     };
 
     for (uint i = 0; i < propVoxs.size(); i++)

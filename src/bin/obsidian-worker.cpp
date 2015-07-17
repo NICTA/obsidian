@@ -82,8 +82,8 @@ struct generateLikelihoodFn
       Eigen::Map<const Eigen::VectorXd> theta(sample.data(),sample.size());
       const GlobalParams gParams = gPrior.reconstruct(theta);
       typename Types<f>::Results synthetic = fwd::forwardModel<f>(spec, cache, gParams.world);
-      synthetic.likelihood = lh::likelihood<f>(synthetic, results, spec);
-      LOG(INFO) << "Evaluated " << f << " likelihhood function (" << jobType << "): " << synthetic.likelihood;
+      synthetic.likelihood = -1.0 * lh::likelihood<f>(synthetic, results, spec);
+      LOG(INFO) << "Evaluated " << f << " negative likelihhood: " << synthetic.likelihood;
       return synthetic.likelihood;
     };
 
@@ -191,8 +191,8 @@ int main(int ac, char *av[])
                                  const std::vector<double>& sample) -> double
   {
     Eigen::Map<const Eigen::VectorXd> theta(sample.data(),sample.size());
-    auto p = gPrior.evaluate(theta);
-    LOG(INFO) << "Evaluated Prior (" << jobType << "): " << p;
+    auto p = -1.0 * gPrior.evaluate(theta);
+    LOG(INFO) << "Evaluated Prior: " << p;
     return p;
   };
 

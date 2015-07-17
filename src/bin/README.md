@@ -1,5 +1,11 @@
-Visualisation Scripts
+Obsidian Applications
 =====================
-There are a few of Python visualisation scripts provided by Obisidan.
-These scripts take the output of mason and visualises it. All the visualisation
-scripts required Python 2.7+ and the Visvis Python library.
+
+`obsidian-server` and `obsidian-worker` are the apllications required to
+run the inversion.
+
+`obsidian-analyise` takes a csv file of samples produced by obsidian and
+outputs voxelisations of marginal distributions over the various layers
+and properties.
+
+`prior-sampler` samples N times from the prior and saves to csv.

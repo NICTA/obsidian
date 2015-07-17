@@ -61,7 +61,7 @@ namespace obsidian
 
 
     // used by sample... almost the same as size()
-    Eigen::VectorXd WorldParamsPrior::deconstruct(const WorldParams& params)
+    Eigen::VectorXd WorldParamsPrior::deconstruct(const WorldParams& params) const
     {
       uint nLayers = propertyPrior.size();
       CHECK_EQ(nLayers, params.rockProperties.size());
@@ -155,7 +155,7 @@ namespace obsidian
       return wParams;
     }
 
-    Eigen::VectorXd WorldParamsPrior::sample(std::mt19937 &gen)
+    Eigen::VectorXd WorldParamsPrior::sample(std::mt19937 &gen) const
     {
       std::vector<bool> uniformFlags;
       for (auto i : classes)
