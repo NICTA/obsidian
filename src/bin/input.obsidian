@@ -200,26 +200,3 @@ noiseBeta = 3.0
 
 # nLocations x 1 kelvin
 sensorReadings =
-
-[mcmc]
-chains = 10
-stacks = 1
-wallTime = 60
-swapInterval = 25
-initialTempFactor = 1.5
-betaOptimalSwapRate = 0.24
-betaAdaptRate = 0.04
-betaMinFactor = 0.8
-betaMaxFactor = 1.25
-betaAdaptInterval = 5000
-adaptionLength = 100000
-cacheLength = 1000
-
-[proposal]
-initialSigma = 0.0001
-initialSigmaFactor = 1.5
-maxFactor = 1.25
-minFactor = 0.8
-optimalAccept = 0.24
-adaptRate = 0.2
-adaptInterval = 2500
