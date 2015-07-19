@@ -5,7 +5,7 @@ sudo: false
 addons:
   apt:
     packages:
-      - g++-5
+      - g++-4.8
 
 # whitelist
 branches:
@@ -29,8 +29,7 @@ before_install:
   - cp ../obsidian/prereqs/buildPrereqs.sh .
 
 install:
-  - sudo apt-get install -qq g++-5
-  - export CXX="g++-5"
+  - export CXX="g++-4.8"
   - pwd
   - ./buildPrereqs.sh
 
