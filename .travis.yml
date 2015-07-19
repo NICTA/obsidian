@@ -1,15 +1,13 @@
+sudo: false
 language: cpp
 compiler: g++
-sudo: false
 
 addons: apt: sources: - ubuntu-toolchain-r-test packages: - gcc-4.8 - g++-4.8
-
 
 # whitelist
 branches:
   only:
     - test/travisci
-
 
 before_install:
   - pwd
