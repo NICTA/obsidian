@@ -18,7 +18,7 @@ wget --quiet -c http://downloads.sourceforge.net/project/boost/boost/1.55.0/boos
 [ -d boost_1_55_0 ] || tar -xf boost_1_55_0.tar.gz
 cd boost_1_55_0
 ./bootstrap.sh >& bootstrap.log &&
-./b2 -j $NPROC --layout=versioned variant=debug,release threading=multi link=static runtime-link=static  toolset=gcc address-model=64 install --prefix=$PREREQ_DIR >& b2.log && echo "Boost installed" || echo "Boost install failed"
+./b2 -j $NPROC --layout=versioned variant=debug,release threading=multi link=static runtime-link=static  toolset=gcc address-model=64 install --prefix=$PREREQ_DIR && echo "Boost installed" || echo "Boost install failed"
 cd ..
 
 # Eigen 3.2.0
