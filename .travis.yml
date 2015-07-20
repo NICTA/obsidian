@@ -19,6 +19,8 @@ branches:
     - test/travisci
 
 before_install:
+  - export CC=/usr/bin/gcc-4.8
+  - export CXX=/usr/bin/g++-4.8
   - pwd
   - echo "nproc=$(nproc)"
   - export OBSIDIAN_SOURCE_DIR=$(pwd)
@@ -32,7 +34,8 @@ before_install:
   - cp ../obsidian/prereqs/buildPrereqs.sh .
 
 install:
-  - export CXX="g++-4.8"
+  - export CC=/usr/bin/gcc-4.8
+  - export CXX=/usr/bin/g++-4.8
   - pwd
   - ./buildPrereqs.sh
 
