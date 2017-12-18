@@ -1,5 +1,9 @@
 Obsidian
 ========
+
+WARNING: This repository is no longer being maintained. 
+=======================================================
+
 Obsidian is a set of tools designed to perform probabilistic inference with
 geophysical sensor data to produce models of the sub-surface. It is written
 primarily in C++ and runs on GNU/Linux and Unix operating systems.
